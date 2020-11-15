@@ -1,0 +1,27 @@
+{
+    "home": {
+        "T1" : "Project tree",
+        "T2" : "Scroll down to see all projects"
+    },
+    "menu": {
+        "home" : "Home",
+        "about" : "About",
+        "contact" : "Contact"
+    },
+    "contact" : {
+        "C1" : "Contact",
+        "C2" : "All data must be entered correctly",
+        "C3" : "Send"
+    } ,
+    "about" : {
+        "A1" : "Front-end developer <br />TypeScript, VueJS, NUXT",
+        "A2" : "I am a Web Developer located in Saint-Petersburg. I currently work as <br> apart time Remote Junior Web Developer. I am looking to take on <br> more work and to increase my skills as a Web Developer."
+    },
+    "project": {
+        "P1" : "Adobe XD / 300$ / 5 days / 1366 x 768",
+        "P2" : "Adobe XD / Ph / 200$ / 3 days / 1366 x 768",
+        "P3" : "Adobe XD / 300$ / 4 days / (Incomplete version)",
+        "P4" : "Adobe XD / 250$ / 2 days / 1366 x 768",
+        "P5" : "Adobe XD / 250$ / 3 days / 1366 x 768"
+    }
+}

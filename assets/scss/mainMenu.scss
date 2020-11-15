@@ -1,0 +1,77 @@
+.menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  &.active {
+    pointer-events: all;
+    .right-side-nav {
+      .link {
+        line-height: 100px;
+      }
+    }
+  }
+  .right-side-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-transform: uppercase;
+    font-size: 60px;
+    margin-left: 170px;
+    text-align: right;
+    padding: 60px 95px 60px 0;
+    position: relative;
+    .link {
+      height: 95px;
+      overflow: hidden;
+      line-height: 300px;
+      transition: 0.5s all;
+      font-size: 52px;
+      letter-spacing: 2.5px;
+      color: #777;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      font-weight: 100;
+      &.nuxt-link-active {
+      }
+      &:nth-child(2) {
+        transition-delay: 0s;
+      }
+      &:nth-child(3) {
+        transition-delay: 0.05s;
+      }
+      &:nth-child(4) {
+        transition-delay: 0.1s;
+      }
+      &:nth-child(5) {
+        transition-delay: 0.15s;
+      }
+    }
+    .line-wrapper {
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      position: absolute;
+      background: rgba(255, 255, 255, 0.2);
+      right: 0;
+      top: 0;
+      opacity: 0;
+      transition: 0.3s opacity;
+      &.active {
+        transition-delay: 0.5s;
+        opacity: 1;
+      }
+      .line {
+        width: 100%;
+        height: 0%;
+        background: white;
+        transition: 0.5s height;
+      }
+    }
+  }
+}
