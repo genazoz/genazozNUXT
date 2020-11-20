@@ -14,24 +14,8 @@
         </filter>
       </defs>
     </svg>
-    <div class="menu_mobile header__toggle-el_main">
-      <div class="menu_mobile__cover"></div>
-      <div class="menu__spans-wrapper">
-        <span class="menu__span-wrapper"><span class="menu__span"></span></span
-        ><span class="menu__span-wrapper"><span class="menu__span"></span></span
-        ><span class="menu__span-wrapper"><span class="menu__span"></span></span
-        ><span class="menu__span-wrapper"><span class="menu__span"></span></span
-        ><span class="menu__span-wrapper"><span class="menu__span"></span></span
-        ><span class="menu__span-wrapper"><span class="menu__span"></span></span
-        ><span class="menu__span-wrapper"><span class="menu__span"></span></span
-        ><span class="menu__span-wrapper"><span class="menu__span"></span></span
-        ><span class="menu__span-wrapper"
-          ><span class="menu__span"></span
-        ></span>
-      </div>
-    </div>
-    <div class="header__toggle-el header__toggle-el_main">
-      <div class="flexRow_ring" hidden-loading>
+    <nuxt-link to="/contact" class="header__toggle-el header__toggle-el_main">
+      <div class="flexRow_ring">
         <svg
           class="border"
           viewBox="0 0 66 66"
@@ -58,12 +42,11 @@
           ></div>
         </div>
       </div>
-    </div>
-    <div class="flexRow_BGAudio hide-ball">
+    </nuxt-link>
+    <div class="flexRow_BGAudio hide-ball on-menu-active">
       <div
-        hidden-loading
         class="icon-wrapper BGAudio"
-        tip__position="6"
+        tip__position="5"
         tip__title="Аудио"
         tip__text="Нажав на эту кнопку, включится фоновая музыка"
       >
@@ -101,7 +84,12 @@
       </div>
     </div>
     <div class="header__toggle-el header__toggle-el_about-contact">
-      <nuxt-link to="/" class="close-about-contact-btn hide-ball" btnSoundOn>
+      <nuxt-link
+        :to="$i18n.path('')"
+        exact
+        class="close-about-contact-btn hide-ball"
+        btnSoundOn
+      >
         <button class="arrow-button arrow-button--left" style="opacity: 1">
           <span class="arrow-button__border">
             <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
@@ -128,38 +116,23 @@
         </button>
       </nuxt-link>
     </div>
-    <div class="nav_mobile">
-      <nuxt-link to="/" goto="home" class="router-link">Главная</nuxt-link>
-      <a class="about-show-button" data-translate-key="">О нас</a>
-      <nuxt-link to="contact" goto="contact" class="router-link"
-        >Заказать сайт</nuxt-link
-      >
-      <div class="socials-wrapper">
-        <a href="https://vk.com/genazozulya" target="blank"
-          ><i class="fab fa-vk"></i
-        ></a>
-        <a href="https://www.instagram.com/genazoz/?hl=ru" target="blank"
-          ><i class="fab fa-instagram"></i
-        ></a>
-        <a href="https://dribbble.com/apolllo" target="blank"
-          ><i class="fab fa-dribbble"></i
-        ></a>
-      </div>
-    </div>
     <div class="logotip" load>
-      <div
-        class="header__toggle-el header__toggle-el_main header__toggle-el_main-logotip"
-      >
-        <nuxt-link class="logo router-link" goto="home" to="/" btnSoundOn>
+      <div class="header__toggle-el header__toggle-el_main-logotip">
+        <nuxt-link
+          class="logo router-link"
+          goto="home"
+          :to="$i18n.path('')"
+          exact
+          btnSoundOn
+        >
           <div class="genazozulya"><span>by</span> genazozulya</div>
         </nuxt-link>
       </div>
     </div>
     <div class="flexRow">
       <div
-        hidden-loading
         class="icon-wrapper icon-wrapper_question hide-ball"
-        tip__position="7"
+        tip__position="3"
         tip__title="Подсказки"
         tip__text="Нажав на эту кнопку, вы сможете увидеть подсказки еще раз"
         btnSoundOn
@@ -171,8 +144,8 @@
           x="0px"
           y="0px"
           fill="white"
-          width="14px"
-          height="14px"
+          width="12px"
+          height="12px"
           viewBox="0 0 512 512"
           style="enable-background: new 0 0 512 512"
           xml:space="preserve"
@@ -205,17 +178,48 @@
           <g></g>
           <g></g>
         </svg>
-        <div class="text" data-translate-key="T19">Подсказки</div>
+        <div class="text">Подсказки</div>
       </div>
+      <!-- <span class="btn-mode-wrapper">
+        <div
+          class="icon-wrapper icon-wrapper_mode hide-ball"
+          @click="changeWorksMode"
+          btnSoundOn
+          tip__position="4"
+          tip__title="Режим показа"
+          tip__text="Нажав на эту кнопку, вы переключите режим отображения проектов"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            id="Capa_1"
+            enable-background="new 0 0 482.239 482.239"
+            height="512"
+            viewBox="0 0 482.239 482.239"
+            width="512"
+          >
+            <path
+              d="m465.016 0h-344.456c-9.52 0-17.223 7.703-17.223 17.223v86.114h-86.114c-9.52 0-17.223 7.703-17.223 17.223v344.456c0 9.52 7.703 17.223 17.223 17.223h344.456c9.52 0 17.223-7.703 17.223-17.223v-86.114h86.114c9.52 0 17.223-7.703 17.223-17.223v-344.456c0-9.52-7.703-17.223-17.223-17.223zm-120.56 447.793h-310.01v-310.01h310.011v310.01zm103.337-103.337h-68.891v-223.896c0-9.52-7.703-17.223-17.223-17.223h-223.896v-68.891h310.011v310.01z"
+            />
+          </svg>
+        </div>
+      </span> -->
       <div
         class="hide-ball icon-wrapper icon_language"
-        tip__position="8"
+        tip__position="2"
         tip__title="Язык"
         tip__text="Нажав на эту кнопку, вы можете переключить язык"
-        hidden-loading
         btnSoundOn
       >
-        Ru
+        <NuxtLink
+          v-if="$i18n.locale === 'ru'"
+          :to="`/en` + $route.fullPath"
+          exact
+        >
+          {{ $t("lang.russian") }}
+        </NuxtLink>
+        <NuxtLink v-else :to="$route.fullPath.replace(/^\/[^\/]+/, '')" exact>
+          {{ $t("lang.english") }}
+        </NuxtLink>
       </div>
     </div>
   </header>
@@ -226,31 +230,19 @@ import { mapMutations, mapGetters } from "vuex";
 import BezierEasing from "bezier-easing/dist/bezier-easing.min";
 
 export default {
+  // head () {
+  //   return { title: this.$t('home.title') }
+  // },
   computed: mapGetters({
     worksMode: "worksMode",
     volume: "volume",
     windowSize: "windowSize",
   }),
+  methods: {},
   mounted() {
     const T = this;
 
     let elements, btnRotateInterval;
-
-    setTimeout(function () {
-      if (T.$store.getters.windowSize === "PC") {
-        document.querySelector(".logotip").removeAttribute("load");
-        document.querySelector(".logotip").setAttribute("active", "");
-      }
-    }, 200);
-    setTimeout(function () {
-      if (T.$store.getters.windowSize === "PC") {
-        elements = document.querySelectorAll("[hidden-loading]");
-        elements.forEach(function (x) {
-          x.classList.add("show-hidden-loading");
-        });
-      }
-    }, 1200);
-
     $nuxt.$emit(
       "add-event-els",
       ".arrow-button--left .arrow-button__border svg:last-child",
@@ -289,12 +281,38 @@ export default {
       ".arrow-button--left",
       "mouseleave",
       function () {
+        let parent = this.closest(".arrow-button--left");
         let el = this.querySelector(".arrow-button__border svg:last-child ");
         let _this = this;
+        let num = 0;
         TweenMax.set(_this, {
           css: { pointerEvents: "none" },
         });
         btnRotateInterval = window.setInterval(function () {
+          num++;
+          if (el.classList.contains("disactive")) {
+            document
+              .querySelector(".arrow-button__border svg:last-child ")
+              .classList.remove("animationend");
+            document
+              .querySelector(".arrow-button__border svg:last-child ")
+              .classList.add("animationend");
+            TweenMax.set(parent, {
+              css: { pointerEvents: "all" },
+            });
+            clearInterval(btnRotateInterval);
+            return 0;
+          }
+          if (num > 260) {
+            TweenMax.set(el, {
+              css: {
+                transform: "rotate(-90deg)",
+              },
+            });
+            el.classList.remove("active");
+            el.classList.add("disactive");
+            clearInterval(btnRotateInterval);
+          }
           if (!$nuxt.$route.name == "about") {
             clearInterval(btnRotateInterval);
           }
@@ -346,6 +364,28 @@ export default {
         );
       }
     );
+
+    document
+      .querySelector(".play.ui-btn")
+      .addEventListener("mouseenter", function () {
+        TweenMax.to(document.querySelectorAll(".ui-btn [path2]"), 1, {
+          css: { strokeDashoffset: "0" },
+          ease: new Ease(BezierEasing(0.9, 0.1, 0.4, 0.9)),
+        });
+      });
+    document
+      .querySelector(".play.ui-btn")
+      .addEventListener("mouseleave", function () {
+        TweenMax.to(document.querySelectorAll(".ui-btn [path2]"), 1, {
+          css: { strokeDashoffset: "40" },
+          ease: new Ease(BezierEasing(0.9, 0.1, 0.4, 0.9)),
+        });
+      });
+  },
+  updated() {
+    TweenMax.set(document.querySelector(".arrow-button--left"), {
+      css: { pointerEvents: "all" },
+    });
   },
 };
 </script>

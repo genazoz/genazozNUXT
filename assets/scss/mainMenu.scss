@@ -1,44 +1,81 @@
 .menu {
   position: fixed;
+  z-index: 2;
   top: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 20;
+  pointer-events: none;
+
   display: flex;
   align-items: center;
-  pointer-events: none;
+  width: 100%;
+  height: 100vh;
+
+  backdrop-filter: blur(0);
+
+  transition: 1s opacity, 1s filter, 1s transform;
   &.active {
     pointer-events: all;
     .right-side-nav {
       .link {
         line-height: 100px;
+        @include for-size(phone-only) {
+          line-height: unset;
+        }
       }
     }
   }
   .right-side-nav {
+    position: relative;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    margin-left: 170px;
+    padding: 30px 95px 30px 0;
+
     text-transform: uppercase;
     font-size: 60px;
-    margin-left: 170px;
     text-align: right;
-    padding: 60px 95px 60px 0;
-    position: relative;
+
+    @include for-size(phone-only) {
+      margin-left: 0;
+      padding: 0px 85px;
+      margin: auto;
+      width: 100%;
+      @include flexCenter;
+      align-items: flex-start;
+    }
     .link {
       height: 95px;
       overflow: hidden;
-      line-height: 300px;
-      transition: 0.5s all;
-      font-size: 52px;
-      letter-spacing: 2.5px;
-      color: #777;
-      text-transform: uppercase;
       cursor: pointer;
+
+      color: #777;
+      opacity: 0.3;
+
+      font-size: 52px;
+      font-weight: 200;
+      text-transform: uppercase;
+      line-height: 300px;
+      letter-spacing: 1.5px;
+
+      transition: 0.5s all;
       transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-      font-weight: 100;
-      &.nuxt-link-active {
+
+      @include for-size(phone-only) {
+        margin: 0;
+        padding: 11px 0px;
+        height: auto;
+
+        font-size: 43px;
+        line-height: unset;
+        letter-spacing: 1.5px;
+        text-transform: capitalize;
+        font-weight: 100;
+
+        color: white !important;
+        opacity: 1 !important;
       }
+
       &:nth-child(2) {
         transition-delay: 0s;
       }
@@ -62,6 +99,13 @@
       top: 0;
       opacity: 0;
       transition: 0.3s opacity;
+
+      @include for-size(phone-only) {
+        left: 46px;
+        right: unset;
+        display: none;
+      }
+
       &.active {
         transition-delay: 0.5s;
         opacity: 1;

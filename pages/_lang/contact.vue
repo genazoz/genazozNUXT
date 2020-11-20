@@ -2,19 +2,9 @@
   <div class="contact-form-container">
     <div class="contact-form">
       <div class="contact-form__flexRow">
-        <div class="avatar-wrapper">
-          <div class="avatar-wrapper__padding">
-            <img
-              class="avatar"
-              data-src="~/assets/img/2.jpg"
-              alt="avatar"
-              v-lazy-load
-            />
-          </div>
-        </div>
         <div class="contact-form__flexCol">
-          <h1>Связаться</h1>
-          <p id="loc" style="text-align: left">Введите email и сообщение</p>
+          <h1>{{ $t("contact.title") }}</h1>
+          <p id="loc" style="text-align: left">{{ $t("contact.text") }}</p>
         </div>
       </div>
       <div class="contact-form__inputs">
@@ -26,9 +16,9 @@
             <div class="container">
               <a href="" class="button" style="--duration: 3000">
                 <ul>
-                  <li>Отправить</li>
-                  <li>Отправка...</li>
-                  <li>Отправлено</li>
+                  <li>{{ $t("contact.buttonSend") }}</li>
+                  <li>{{ $t("contact.buttonSending") }}</li>
+                  <li>{{ $t("contact.buttonSended") }}</li>
                 </ul>
                 <div>
                   <div class="before">
@@ -74,7 +64,6 @@ module.exports = {
     T = this;
 
     $nuxt.$emit("init-cursor-hover");
-    $nuxt.$emit("set-lang", T.$store.getters.lang);
 
     /*--------------------------------------------------
         Анимация загрузки страницы

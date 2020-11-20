@@ -47,116 +47,39 @@ export default {
 
     T.initCursorHover();
 
-    var Q = {};
-    var container = document.querySelector(".overflow-y-scroll");
-
-    Q.Y = 0;
-    function scroll(e) {
-      e.preventDefault();
-      Q.Y -= e.deltaY * 1.6;
-      // console.log(Q.Y);
-
-      var bottom =
-        -(container.scrollHeight - container.scrollTop) +
-        (window.innerHeight - 50);
-      // console.log(bottom);
-      if (bottom > Q.Y) {
-        Q.Y = bottom;
-      }
-      if (Q.Y > 0) {
-        Q.Y = 0;
-      }
-
-      TweenMax.to(container, 1.2, {
-        y: Q.Y,
-        ease: new Ease(BezierEasing(0.9, 0.1, 0.4, 0.9)),
-        overwrite: "auto",
-      });
-    }
-    window.addEventListener("wheel", scroll, { passive: false });
-
-    window.addEventListener("load", () => {
-      setTimeout(function () {
-        T.$store.commit("changeAppLoaded", { val: 1 });
-      }, 2000);
-    });
+    setTimeout(function () {
+      T.$store.commit("changeAppLoaded", { val: 1 });
+    }, 2000);
 
     /*--------------------------------------------------
       Работа с главным меню (PC) - Work with main menu (PC)
     ---------------------------------------------------*/
 
     document.querySelector(".ring-btn").addEventListener("click", () => {
-      if (T.$store.getters.windowSize === "PC") {
-        if (menu.menuOpened === true) {
-          menu.closeMenu();
-          menu.sectionScaleUp();
-          if (!document.querySelector("header").getAttribute("about-contact"))
-            TweenMax.to(
-              "#counter-wrap,.icon-wrapper_mode,#external-caption,.swiper-wrapper .swiper-slide .slide-title",
-              0.5,
-              {
-                css: { opacity: 1 },
-                delay: 1,
-              }
-            );
-        } else {
-          menu.openMenu();
-          menu.sectionScaleDown();
-
-          TweenMax.to(
-            "#counter-wrap,.icon-wrapper_mode,#external-caption,.swiper-wrapper .swiper-slide .slide-title",
-            0.5,
-            {
-              css: { opacity: 0 },
-            }
-          );
-        }
-      }
-    });
-
-    document.querySelector(".menu_mobile").addEventListener("click", () => {
       if (menu.menuOpened === true) {
-        menu.menuOpened = false;
+        menu.closeMenu();
         menu.sectionScaleUp();
-        if (
-          document.querySelectorAll("section").getAttribute("location") ===
-          "reviews"
-        ) {
-          TweenMax.to(".flexRow_reviews-page", 0.1, {
-            scale: 1,
-            opacity: 1,
-          });
-        }
       } else {
-        menu.menuOpened = true;
+        menu.openMenu();
         menu.sectionScaleDown();
-        if (
-          document.querySelectorAll("section").getAttribute("location") ===
-          "reviews"
-        ) {
-          TweenMax.to(".flexRow_reviews-page", 0.1, {
-            scale: 0.7,
-            opacity: 0,
-          });
-        }
       }
     });
 
     /*--------------------------------------------------
       Настройка отображения пунктов меню
     ---------------------------------------------------*/
-    window.onload = function () {
-      setTimeout(animateActiveNav(), 1000);
-    };
+    setTimeout(animateActiveNav(), 1000);
 
     function animateActiveNav() {
       let elements = document.querySelectorAll(".right-side-nav .link");
       elements.forEach(function (x) {
         x.style.color = "#777";
+        x.style.opacity = ".45";
       });
       elements = document.querySelectorAll(".right-side-nav .nuxt-link-active");
       elements.forEach(function (x) {
         x.style.color = "white";
+        x.style.opacity = "1";
       });
 
       elements = document.querySelectorAll(".right-side-nav .nuxt-link-active");
@@ -187,9 +110,11 @@ export default {
       x.addEventListener("mouseenter", function () {
         elements = document.querySelectorAll(".link");
         elements.forEach(function (x) {
-          x.setAttribute("style", "color: #777");
+          x.style.color = "#777";
+          x.style.opacity = ".45";
         });
-        x.setAttribute("style", "color: white");
+        x.style.color = "white";
+        x.style.opacity = "1";
         let children = x.closest(".right-side-nav").querySelectorAll(".link"),
           amountEls = children.length,
           index = Array.from(document.querySelectorAll(".link")).indexOf(x),
@@ -206,6 +131,7 @@ export default {
         elements = document.querySelectorAll(".right-side-nav .link");
         elements.forEach(function (x) {
           x.style.color = "#777";
+          x.style.opacity = ".45";
         });
 
         elements = document.querySelectorAll(
@@ -213,6 +139,7 @@ export default {
         );
         elements.forEach(function (x) {
           x.style.color = "white";
+          x.style.opacity = "1";
         });
 
         let children = document.querySelectorAll(".right-side-nav .link"),
@@ -251,10 +178,6 @@ export default {
           });
           document.querySelector("header").removeAttribute("about-contact");
 
-          // elements = document.querySelectorAll(".genazozulya3");
-          // elements.forEach(function (x) {
-          //   x.setAttribute("style", "opacity: 0;");
-          // });
           menu.sectionScaleDown();
           setTimeout(function () {
             menu.openMenu();
@@ -264,7 +187,6 @@ export default {
           document
             .querySelector(".contact-form-container")
             .removeAttribute("active");
-          document.querySelector(".menu_mobile").click();
         }
 
         if (!document.querySelector(".about-section")) return 0;
@@ -275,33 +197,6 @@ export default {
           pointerEvents: "none",
         });
       });
-
-    /*--------------------------------------------------
-        Главное меню на (smartphone) - Main menu (smartphone)
-    ---------------------------------------------------*/
-    elements = document.querySelectorAll(".menu_mobile, .nav_mobile a");
-    elements.forEach(function (x) {
-      x.addEventListener("click", function () {
-        checkNavActive();
-      });
-    });
-
-    function checkNavActive() {
-      let nav = document.querySelector(".nav_mobile"),
-        menu = document.querySelector(".menu_mobile"),
-        cover = document.querySelector(".menu_mobile__cover"),
-        section = document.querySelector("section");
-      if (!nav.getAttribute("active")) {
-        section.setAttribute("scale", "");
-        nav.setAttribute("active", "1");
-        cover.setAttribute("active", "");
-        document.querySelectorAll(".menu .text").show();
-      } else {
-        section.removeAttribute("scale");
-        nav.removeAttribute("active");
-        cover.removeAttribute("active");
-      }
-    }
   },
   methods: {
     /*--------------------------------------------------
@@ -375,6 +270,9 @@ export default {
         });
       }, 1000);
     },
+  },
+  updated() {
+    menu.openMenu();
   },
   created() {
     const T = this;

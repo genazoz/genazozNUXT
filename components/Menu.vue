@@ -5,25 +5,25 @@
         <div class="line"></div>
       </div>
       <nuxt-link
-        to="/"
+        :to="$i18n.path('')"
+        exact
         goto="home"
         class="nav-hover nav-hover_home link router-link"
-        data-translate-key="T20"
         btnSoundOn
         >{{ $t("menu.home") }}</nuxt-link
       >
-      <nuxt-link
-        to="/about"
+      <!-- <nuxt-link
+        :to="$i18n.path('about')"
+        exact
         class="link router-link about-show-button"
-        data-translate-key="T21"
         btnSoundOn
       >
         {{ $t("menu.about") }}
-      </nuxt-link>
+      </nuxt-link> -->
       <nuxt-link
-        to="/contact"
+        :to="$i18n.path('contact')"
+        exact
         class="link router-link contact-show-btn"
-        data-translate-key="T22"
         btnSoundOn
       >
         {{ $t("menu.contact") }}

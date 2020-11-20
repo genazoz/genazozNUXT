@@ -2,16 +2,14 @@
   <footer>
     <div class="flexRow hide-ball"></div>
     <div class="text text-lower-main hide-ball">
-      <p hidden-loading>
-        © <span>2017</span>-<span>2020</span> · Saint-Petersburg · Russia
-      </p>
+      <p>© <span>2017</span>-<span>2020</span> · Saint-Petersburg · Russia</p>
     </div>
     <div class="flexRow">
-      <div class="magic-parallax" hidden-loading>
+      <div class="magic-parallax on-menu-active">
         <div
           class="icon-wrapper icon icon_fullscreen"
           @click="setFullscreen()"
-          tip__position="5"
+          tip__position="6"
           tip__title="На весь экран"
           tip__text="Нажав на эту кнопку, вы перейдете в полноэкранный режим"
         >

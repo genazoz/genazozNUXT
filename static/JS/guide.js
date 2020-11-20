@@ -82,41 +82,41 @@ class interactiveGuide {
     removeUnTips() {
         let t = this;
         t.tips.forEach(function (x) {
-        let num = parseInt(x.getAttribute("tip__position"));
-        let contactPage = document.querySelector(".contact-form-container"),
-            aboutPage = document.querySelector(".about-section");
-        switch (num) {
-            case 1:
-            case 6:
-            if (aboutPage || contactPage) {
-                removeFromTipsway(x);
-            } else {
-                addToTipsway(x);
+            let num = parseInt(x.getAttribute("tip__position"));
+            let contactPage = document.querySelector(".contact-form-container"),
+                aboutPage = document.querySelector(".about-section");
+            switch (num) {
+                case 1:
+                case 4:
+                    if (aboutPage || contactPage) {
+                        removeFromTipsway(x);
+                    } else {
+                        addToTipsway(x);
+                    }
+                break;
+                case 5:
+                case 6:
+                    if (aboutPage || contactPage || t.menu.scaled === false) {
+                        removeFromTipsway(x);
+                    }
+                    else {
+                        addToTipsway(x);
+                    }
+                break;
+                case 9:
+                if (t.menu.scaled === true || contactPage || aboutPage) {
+                    removeFromTipsway(x);
+                } else if (x.getAttribute("tip__hidden")) {
+                    addToTipsway(x);
+                }
+                break;
             }
-            break;
-            case 2:
-            case 3:
-            case 4:
-            if (t.menu.scaled === true || t.projectsMode == 2 || contactPage) {
-                removeFromTipsway(x);
-            } else if (x.getAttribute("tip__hidden")) {
-                addToTipsway(x);
+            function removeFromTipsway(x) {
+                x.setAttribute("tip__hidden", "hidden");
             }
-            break;
-            case 9:
-            if (t.menu.scaled === true || contactPage || aboutPage) {
-                removeFromTipsway(x);
-            } else if (x.getAttribute("tip__hidden")) {
-                addToTipsway(x);
-            }
-            break;
-        }
-        function removeFromTipsway(x) {
-            x.setAttribute("tip__hidden", "hidden");
-        }
-        function addToTipsway(x) {
-            if (x.getAttribute("tip__hidden")) x.removeAttribute("tip__hidden");
-        }
+            function addToTipsway(x) {
+                if (x.getAttribute("tip__hidden")) x.removeAttribute("tip__hidden");
+            }   
         });
 
         t.tipsAmount = document.querySelectorAll(
@@ -219,15 +219,15 @@ class interactiveGuide {
 
         // Проходимся по всем элементам (доступным и недоступным), чтобы получить номер первой доступной подсказки
         while (!t.tipEl || t.tipEl.getAttribute("tip__hidden") === "hidden") {
-        t.currentTip++;
-        t.tipEl = document.querySelector(
-            '[tip__position="' + t.currentTip + '"]'
-        );
+            t.currentTip++;
+            t.tipEl = document.querySelector(
+                '[tip__position="' + t.currentTip + '"]'
+            );
 
-        if (t.currentTip > t.tips.length) {
-            t.closeGuide();
-            return 0;
-        }
+            if (t.currentTip > t.tips.length) {
+                t.closeGuide();
+                return 0;
+            }
         }
 
         /* Меняет заголовок и текст в подсказке на текущие, переключает мод обводки (Круг, квадрат) */

@@ -5,7 +5,7 @@ export const state = () => ({
   volume: 0.1,
   locales: ['en', 'ru'],
   locale: 'ru',
-  worksMode: 2,
+  worksMode: 1,
   windowSize: "PC",
   e: {
     x: 0,

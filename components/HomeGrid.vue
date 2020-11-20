@@ -1,5 +1,6 @@
 <template>
   <div class="home-grid">
+    <!-- lazy-background="~/assets/img/projects/desktop/gridmode/genazozBG.webp" -->
     <div class="home-grid__title-wrapper">
       <div class="before"></div>
       <h2>{{ $t("home.T1") }}</h2>
@@ -9,12 +10,17 @@
       <div class="overflow-y-scroll">
         <div class="projects-main-wrapper">
           <div class="projects-wrapper">
-            <div class="custom-scrollbar hide-ball">
+            <div class="custom-scrollbar">
               <div class="custom-scrollbar__line1"></div>
               <div class="custom-scrollbar__circle"></div>
               <div class="custom-scrollbar__line2"></div>
             </div>
-            <div v-for="item in projects" :key="item.name" class="project-item">
+            <div
+              v-for="item in projects"
+              :key="item.name"
+              :active="item.active"
+              class="project-item"
+            >
               <nuxt-link
                 to="/project"
                 class="router-link mouseScale"

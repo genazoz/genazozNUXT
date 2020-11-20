@@ -96,10 +96,49 @@ export default {
   }),
   mounted() {
     const T = this;
+    let elements;
 
     /*--------------------------------------------------
       Работа с "магическими" элементами - Work with "magic" elements
     ---------------------------------------------------*/
+
+    elements = document.querySelectorAll(".hide-ball");
+    elements.forEach(function (x) {
+      x.addEventListener("mouseenter", function () {
+        TweenMax.to("#ball", 0.15, {
+          borderWidth: "1px",
+          scale: 2,
+          opacity: 0,
+        });
+      });
+      x.addEventListener("mouseleave", function () {
+        TweenMax.to("#ball", 0.25, {
+          borderWidth: "2px",
+          scale: 1,
+          opacity: 1,
+        });
+      });
+    });
+
+    elements = document.querySelectorAll(".link, .mouseScale");
+    elements.forEach(function (x) {
+      x.addEventListener("mouseenter", function () {
+        TweenMax.to("#ball", 0.2, {
+          borderWidth: "0px",
+          scale: 3,
+          backgroundColor: "rgba(127, 127, 127, 1)",
+          opacity: 0.15,
+        });
+      });
+      x.addEventListener("mouseleave", function () {
+        TweenMax.to("#ball", 0.3, {
+          borderWidth: "2px",
+          scale: 1,
+          backgroundColor: "rgba(127, 127, 127, 0)",
+          opacity: 1,
+        });
+      });
+    });
 
     setTimeout(function () {
       if (T.$store.getters.windowSize === "PC") {
@@ -112,7 +151,7 @@ export default {
       }
     }, 1000);
 
-    var n = 0.33,
+    var n = 0.5,
       o = !1,
       cursorBall = document.getElementById("ball");
     TweenMax.set(cursorBall, {
@@ -122,6 +161,11 @@ export default {
     document.addEventListener("mousemove", function (t) {
       let n = window.pageYOffset || document.documentElement.scrollTop;
       T.$store.commit("setE", { x: t.pageX, y: t.pageY - n });
+
+      let ball = document.querySelector("#magic-cursor");
+      if (ball.classList.contains("touch")) {
+        ball.classList.remove("touch");
+      }
     });
 
     TweenMax.ticker.addEventListener("tick", function () {

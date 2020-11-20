@@ -24,6 +24,12 @@ class mainMenu {
       elements.forEach(function (x) {
         x.classList.add("active");
       });
+      document.querySelectorAll('.on-menu-active').forEach(function(x){
+        x.classList.add('active');
+      })
+      TweenMax.to(".on-menu-active", 0.5, {
+        css: { opacity: 1 },
+      });
     }
     closeMenu() {
       this.menuOpened = false;
@@ -33,6 +39,15 @@ class mainMenu {
       elements.forEach(function (x) {
         x.classList.remove("active");
       });
+      TweenMax.to(".on-menu-active", 0.5, {
+        css: { opacity: 0 },
+      });
+      setTimeout(function(){
+        
+      document.querySelectorAll('.on-menu-active').forEach(function(x){
+        x.classList.remove('active');
+      })
+      },500)
     }
     togglePage(location, goto) {
       if (location === goto) {
@@ -42,26 +57,25 @@ class mainMenu {
     }
     sectionScaleDown() {
       this.scaled = true;
-      TweenMax.to(document.querySelectorAll(".logotip"), 0.5, {
-        css: { opacity: 1 },
+      TweenMax.to(".text-lower-main", 0.5, {
+        transform: "translateY(0px)",
       });
-      TweenMax.to(".main-wrapper-home__menu-transition", 0.1, {
-        scale: 0.75,
-        x: 0,
-        opacity: 0.8,
-        webkitFilter: "blur(" + 205 + "px)",
+      TweenMax.to(".home", 0.1, {
+        opacity: 0.65,
         overflow: "hidden",
+        filter: "blur(" + 205 + "px)",
         pointerEvents: "none",
       });
     }
     sectionScaleUp() {
       this.scaled = false;
-      TweenMax.to(".main-wrapper-home__menu-transition", 0.1, {
-        scale: 1,
-        x: 0,
+      TweenMax.to(".text-lower-main", 0.5, {
+        transform: "translateY(100px)",
+      });
+      TweenMax.to(".home", 0.1, {
         opacity: 1,
         overflow: 'visible',
-        webkitFilter: "blur(" + 0 + "px)",
+        filter: "blur(" + 0 + "px)",
         pointerEvents: "all",
       });
     }

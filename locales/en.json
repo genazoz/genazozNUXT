@@ -1,7 +1,14 @@
 {
+    "lang": {
+        "english": "En",
+        "russian": "Ру"
+    },
     "home": {
-        "T1" : "Project tree",
-        "T2" : "Scroll down to see all projects"
+        "ftitle"    : "Hi, I'm Gennady",
+        "titleMobile"   : "Front-end \nTypeScript, NUXT",
+        "titleDesktop"  : "Front-end developer \nTypeScript, VueJS, NUXT",
+        "text"      : "Located in Saint-Petersburg. I am looking to take on more work.",
+        "button"    : "Order a site"
     },
     "menu": {
         "home" : "Home",
@@ -9,13 +16,21 @@
         "contact" : "Contact"
     },
     "contact" : {
-        "C1" : "Contact",
-        "C2" : "All data must be entered correctly",
-        "C3" : "Send"
+        "title" : "Contact",
+        "text" : "All data must be entered correctly",
+        "buttonSend" : "Send",
+        "buttonSending" : "Sending...",
+        "buttonSended" : "Sended"
     } ,
     "about" : {
-        "A1" : "Front-end developer <br />TypeScript, VueJS, NUXT",
-        "A2" : "I am a Web Developer located in Saint-Petersburg. I currently work as <br> apart time Remote Junior Web Developer. I am looking to take on <br> more work and to increase my skills as a Web Developer."
+        "A1" : "Front-end developer TypeScript, VueJS, NUXT",
+        "A2" : "."
+    },
+    "about" : {
+        "available" : "I am available for freelancing or full-time work",
+        "title"     : "Front-end developer \nTypeScript, VueJS, NUXT",
+        "text"      : "I am a Web Developer located in Saint-Petersburg. I currently work as apart time Remote Junior Web Developer. I am looking to take on more work and to increase my skills as a Web Developer.",
+        "button"    : "Order a site"
     },
     "project": {
         "P1" : "Adobe XD / 300$ / 5 days / 1366 x 768",

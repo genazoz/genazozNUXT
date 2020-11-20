@@ -9,33 +9,29 @@
             />
           </svg>
         </div>
-        <p>Доступен для фриланса или работы full-time</p>
+        <p>{{ $t("about.available") }}</p>
       </div>
-      <h1 data-translate-key="T24">
-        Front-end разработчик <br />
-        TypeScript, VueJS, NUXT
-      </h1>
-      <p data-translate-key="T25">
-        Нахожусь в Санкт-Петербурге. На данный момент на фрилансе как Junior
-        разработчик. В поиске full-time вакансии для работе в команде и
-        улучшения своих скиллов в разработке.
+      <h1 class="white-space-pre">{{ $t("about.title") }}</h1>
+      <p>
+        {{ $t("about.text") }}
       </p>
-      <nuxt-link to="/contact" class="hide-ball" btnSoundOn
-        >Заказать сайт</nuxt-link
-      >
+      <nuxt-link to="/contact" class="hide-ball" btnSoundOn>
+        {{ $t("about.button") }}
+      </nuxt-link>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["menu"],
+  // head () {
+  //   return { title: this.$t('home.title') }
+  // },
   mounted() {
     const T = this;
     menu.closeMenu();
     menu.sectionScaleDown();
     $nuxt.$emit("init-cursor-hover");
-    $nuxt.$emit("set-lang", T.$store.getters.lang);
 
     document.querySelector("header").setAttribute("about-contact", "");
     TweenMax.to(".about-section", 1.5, {

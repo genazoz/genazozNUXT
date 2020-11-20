@@ -1,58 +1,42 @@
 <template>
   <div class="swiper-container">
-    <div
-      class="swiper-wrapper"
-      tip__position="2"
-      tip__title="Проекты"
-      tip__text="Чтобы перейти к проекту, нажмите на него. Чтобы посмотреть весь список проектов, проскрольте колесом мыши, либо мышью перетащите проекты влево."
-      tip__mode="square"
-    >
-      <div
-        v-for="(item, index) in projects"
-        :key="item.name"
-        class="swiper-slide"
-      >
-        <div class="change-size-wrapper">
-          <div class="background-wrapper">
-            <div class="in-background-wrapper">
-              <img
-                class="background parallax-bg"
-                data-swiper-parallax="9%"
-                :src="
-                  require(`~/assets/img/projects/desktop/${item.img_list}.webp`)
-                "
-              />
-            </div>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="father-info">
+          <div class="father-info__img-wrapper">
+            <img src="~/assets/img/memoji.png" alt="memoji" />
+            <img src="~/assets/img/emoji.png" alt="emoji" />
+          </div>
+          <div class="flexCol">
+            <h1 class="title_desktop">
+              <span class="white-space-pre">{{ $t("home.titleDesktop") }}</span>
+            </h1>
+            <h1 class="title_smartphone">
+              <span class="white-space-pre">{{ $t("home.titleMobile") }}</span>
+            </h1>
+            <p>{{ $t("home.text") }}</p>
+
+            <nuxt-link to="/contact" class="hide-ball" btnSoundOn>
+              {{ $t("home.button") }}
+            </nuxt-link>
           </div>
         </div>
-        <div
-          class="slide-title router-link"
-          :data-number="index + 1"
-          btnSoundOn
-        >
-          <span>{{ item.name }}</span>
+      </div>
+      <div v-for="item in projects" :key="item.name" class="swiper-slide">
+        <img
+          class="background parallax-bg"
+          data-swiper-parallax="9%"
+          :src="
+            require(`~/assets/img/projects/desktop/gridmode/${item.img_list}.webp`)
+          "
+        />
+        <div class="swiper-slide__lower-info">
+          <h5>{{ item.name }}</h5>
+          <p>{{ item.description }}</p>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- <div
-    id="external-caption"
-    tip__position="4"
-    tip__title="Описание проекта"
-    tip__text=""
-    tip__mode="square"
-  >
-    <p
-      v-for="(item, index) in project"
-      :key="item.name"
-      class="slide-caption"
-      :data-slide-caption="'0' + (index + 1)"
-      :active="item.active"
-    >
-      {{ item.description }}
-    </p>
-  </div> -->
 </template>
 
 <script>
@@ -72,6 +56,7 @@ export default {
   data() {
     return {
       projects: [],
+      visible: 1,
     };
   },
 };

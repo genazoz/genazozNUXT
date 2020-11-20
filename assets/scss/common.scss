@@ -54,8 +54,19 @@ a {
 
   /* Адаптация */
 }
+
 audio {
   display: none;
+}
+.white-space-pre {
+  white-space: pre;
+}
+.on-menu-active {
+  display: none !important;
+  opacity: 0;
+  &.active {
+    display: flex !important;
+  }
 }
 h1 {
   /* Позиционирование */
@@ -172,43 +183,13 @@ body {
   /* Адаптация */
 }
 
-main {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transition: background-color 0.4s ease-in-out 0s;
-}
-
 section {
-  &[scale] {
-    transform: scale(0.9);
-  }
   &.home {
-    width: 100%;
-    height: 100vh;
-    position: absolute;
     top: 0;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    .main-wrapper-home {
-      &,
-      &__menu-transition {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-      & {
-        transition: 0.2s opacity, 0.2s filter;
-      }
-      &__menu-transition {
-        transition: 1s opacity, 1s filter, 1s transform;
-      }
-    }
+
+    width: 100%;
+    min-width: 320px;
+
     .custom-scrollbar {
       position: absolute;
       width: 85px;
@@ -224,8 +205,9 @@ section {
       align-items: center;
       transition: 1s transform;
       z-index: 111;
-      pointer-events: all;
+      // pointer-events: all;
       opacity: 0;
+      display: none;
       @include for-size(full-hd) {
         height: 45vh;
       }
@@ -258,119 +240,11 @@ section {
         background: rgba(255, 255, 255, 1);
       }
       &__line2 {
-        height: calc(100% - 20px);
+        height: 100%;
+        z-index: 0;
         background: rgba(255, 255, 255, 0.1);
-      }
-    }
-    #external-caption {
-      /* Позиционирование */
-      position: absolute;
-      left: 0;
-      right: 0;
-      z-index: 1;
-      /* Блочная модель */
-      @include flexCenter;
-      flex-direction: column;
-      width: max-content;
-      height: auto;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 235px;
-      pointer-events: none;
-      display: none !important;
-      /* Типографика */
-      /* Оформление */
-      opacity: 0;
-      /* Анимация */
-      /* Разное */
-      /* Адаптация */
-      @include for-size(phone-only) {
-        left: 30px;
-        min-width: 300px;
-        margin-top: 0px;
-      }
-      /* Модификации */
-      &[go-next-page] {
-        transition: 0.3s all;
-        transition-delay: 0s;
-        transition-timing-function: unset;
-        opacity: 0;
-      }
-      &:before {
-        content: "";
         position: absolute;
-        width: 35px;
-        height: 2px;
-        background-color: #fff;
-        top: -17px;
-        opacity: 0.3;
       }
-      /* Дети */
-      p {
-        font-size: 14px;
-        font-weight: 400;
-        letter-spacing: 0.3px;
-        max-width: 300px;
-        height: 16px;
-        line-height: 20px;
-        color: #999;
-      }
-      .slide-caption {
-        position: absolute;
-        opacity: 0;
-        width: max-content;
-        text-align: center;
-        transition: 0.25s all ease-in;
-        @include for-size(phone-only) {
-          width: 80vw;
-        }
-        @include for-size(full-hd) {
-          margin-top: 10px;
-        }
-        &[active] {
-          position: relative;
-          transition-delay: 0.25s;
-          transition: 0.1s all ease-in;
-          opacity: 1;
-        }
-      }
-    }
-  }
-  &:not(.project) {
-    transform: translateX(150vw);
-    pointer-events: none;
-    opacity: 1;
-    filter: blur(0px);
-    transition: 1s transform, 1s opacity, 1s filter;
-    height: 100vh;
-    overflow: hidden;
-    background: #080808;
-    &.active {
-      transform: scale(1) translateX(0vw);
-      pointer-events: all;
-      opacity: 1;
-      filter: blur(0px);
-    }
-    &[brightness] {
-      filter: brightness(1.5);
-    }
-    &.menu-mode {
-      transform: scale(0.8) translateX(0vw);
-      opacity: 0.8;
-      filter: blur(25px);
-      transition: 1s transform, 1s opacity, 1s filter;
-      height: 100vh;
-      overflow: hidden;
-      pointer-events: none;
-    }
-    &.left {
-      pointer-events: all;
-      opacity: 1;
-      filter: blur(0px);
-      transform: scale(0.8) translateX(-150vw);
-    }
-    &.right {
-      transform: scale(0.8) translateX(150vw);
     }
   }
 }
@@ -381,18 +255,26 @@ section {
 header,
 footer {
   position: fixed;
-  width: 100%;
   z-index: 21;
-  height: 120px;
-  padding: 0 65px;
-  align-items: center;
-  margin: 0 auto;
   left: 0;
+  right: 0;
   pointer-events: none;
+
   display: flex;
+  align-items: center;
+  width: 100%;
+  height: 120px;
+  margin: 0 auto;
+  padding: 0 65px;
+
+  @include for-size(phone-only) {
+    height: 100px;
+  }
+
   .hide-ball {
     pointer-events: all;
   }
+
   @include wrapper();
   @include for-size(phone-only) {
     padding: 0 30px;
@@ -415,6 +297,8 @@ header {
     width: $crclBtnWH;
     height: $crclBtnWH;
     margin-left: -20px;
+    margin-right: 25px;
+
     .flexRow_ring {
       width: 100%;
       height: 100%;
@@ -434,7 +318,13 @@ header {
         fill: none;
         backface-visibility: hidden;
         stroke-dasharray: 207.34512px 207.34512px;
-        stroke-dashoffset: 207.34512px;
+        stroke-dashoffset: -207.34512px;
+
+        transform: matrix(0, 1, -1, 0, 0, 0);
+
+        @include for-size(phone-only) {
+          opacity: 0;
+        }
       }
 
       .ring-btn {
@@ -444,9 +334,6 @@ header {
         border-radius: 100px;
         position: relative;
         cursor: pointer;
-        @include for-size(tablet-portrait-up) {
-          display: none;
-        }
         &__tip {
           position: absolute;
           width: 38px;
@@ -467,9 +354,13 @@ header {
           height: 100%;
           border-radius: 100px;
           position: relative;
-          transition: 0.1s border;
+          transition: 0.3s border;
+          border: 1.5px solid transparent;
           &.active {
             border: 1.5px solid rgba(255, 255, 255, 0.15);
+            @include for-size(phone-only) {
+              border: unset;
+            }
           }
         }
         .hamburger,
@@ -609,7 +500,6 @@ header {
         pointer-events: none;
         padding-left: 0.3vw;
         font-size: 7px;
-        display: none;
         span {
           letter-spacing: 6px;
         }
@@ -701,58 +591,6 @@ header {
       flex-wrap: wrap;
       transition: 0.3s all;
       transition-delay: 0.05s;
-    }
-    &_mobile {
-      width: 30px;
-      height: 30px;
-      display: none;
-      @include for-size(tablet-portrait-up) {
-        display: block;
-      }
-      &[active] {
-        .menu__spans-wrapper {
-          transform: rotate(180deg);
-        }
-        .menu__span-wrapper {
-          &:nth-child(2) {
-            .menu__span {
-              margin: 5px 0 0px 5px;
-            }
-          }
-          &:nth-child(6) {
-            .menu__span {
-              margin: 5px 0 0px -5px;
-            }
-          }
-          &:nth-child(4) {
-            .menu__span {
-              margin: -5px 0 0px 5px;
-            }
-          }
-          &:nth-child(8) {
-            .menu__span {
-              margin: -5px 0 0px -5px;
-            }
-          }
-        }
-      }
-      &__cover {
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.3);
-        z-index: 0;
-        top: 0;
-        left: 0;
-        opacity: 0;
-        pointer-events: none;
-        transition: 0.8s opacity;
-        transition-timing-function: cubic-bezier(0.9, 0.1, 0.4, 0.9);
-        &[active] {
-          opacity: 1;
-          pointer-events: all;
-        }
-      }
     }
     &__span-wrapper {
       width: calc(30px / 3);
@@ -907,6 +745,7 @@ footer {
     right: 0;
     left: 0;
     transition: 0.2s opacity;
+    // transform: translateY(100px);
     &:hover {
       opacity: 0.25;
     }
@@ -939,7 +778,11 @@ footer {
   padding-right: 40px;
   padding-top: 50px;
   margin-top: -50px;
-  margin-left: 21px;
+  @include for-size(phone-only) {
+    transform: translateY(-100vh);
+    position: absolute;
+    pointer-events: none;
+  }
 }
 .BGAudio {
   /* Позиционирование */
@@ -1268,94 +1111,10 @@ footer {
       margin-bottom: 5px;
       font-size: $font-size * 1;
     }
-    &_mobile {
-      display: none;
-      @include for-size(tablet-portrait-up) {
-        display: flex;
-      }
-      position: fixed;
-      width: calc(100% - 20px);
-      height: 240px;
-      background: white;
-      z-index: 30;
-      border-radius: 17px;
-      margin: auto;
-      bottom: -300px;
-      left: 0;
-      right: 0;
-      padding: 13px 13px;
-      transition: 0.8s transform;
-      transition-timing-function: cubic-bezier(0.9, 0.1, 0.4, 0.9);
-      &[show] {
-        transform: translateY(-310px);
-      }
-      img {
-        width: 97px;
-        border-radius: 16px;
-      }
-      &__close-btn {
-        position: absolute;
-        width: 19px;
-        height: 19px;
-        right: 18px;
-        top: 18px;
-        background: #e5e5e5;
-        z-index: 11;
-        border-radius: 100px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        display: none;
-        span {
-          width: 10px;
-          height: 1px;
-          background: #aaa;
-          position: absolute;
-          &:nth-child(1) {
-            transform: rotate(45deg);
-          }
-          &:nth-child(2) {
-            transform: rotate(-45deg);
-          }
-        }
-      }
-      &__content-wrapper {
-        height: 100%;
-        width: 100%;
-        flex-direction: column;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 25px;
-      }
-      &__title {
-        color: #707070;
-        font-size: 22px;
-        margin-bottom: 11px;
-        display: flex;
-        align-items: center;
-        svg {
-          display: none;
-          font-size: 13px;
-          margin-left: 5px;
-          margin-top: 1px;
-        }
-      }
-      &__text {
-        color: #909090;
-        text-align: center;
-        font-size: 13px;
-      }
-      &__ok-btn {
-        color: #58a5fd;
-        margin-top: 20px;
-        font-size: 13px;
-      }
-    }
   }
   .guide__flexRow_fixed {
     position: fixed;
-    left: 65px;
+    right: 65px;
     bottom: 40px;
     z-index: 3;
 
@@ -1382,34 +1141,39 @@ footer {
 03. Magic Cursor
 ---------------------------------------------------*/
 #magic-cursor {
+  position: fixed;
   left: 0;
   top: 0;
-  width: 30px;
-  height: 30px;
   pointer-events: none;
   z-index: 10000;
-  -webkit-transition: opacity 0.2s ease-in-out 0.5s;
-  transition: opacity 0.2s ease-in-out 0.5s;
-  position: fixed;
+
+  width: 30px;
+  height: 30px;
+
+  transition: opacity 0.2s ease-in-out;
+
   @include for-size(tablet-portrait-up) {
     display: none;
   }
-  &.scale-up {
-    &.scale-up_right {
+
+  &.touch {
+    transition: 0s all;
+    opacity: 0;
+    &.arrow-right {
       #ball {
         .before {
           opacity: 0;
         }
       }
     }
-    &.scale-up_left {
+    &.arrow-left {
       #ball {
         .after {
           opacity: 0;
         }
       }
     }
-    &.scale-none {
+    &.arrow-none {
       #ball {
         &:before {
           opacity: 0;
@@ -1419,6 +1183,7 @@ footer {
         }
       }
     }
+
     #ball {
       .before {
         opacity: 1;
@@ -1589,7 +1354,6 @@ footer {
 }
 
 .available-for-work {
-  $blue: $yellow;
   // #0071e3
   // #0072ff
   display: flex;
@@ -1597,7 +1361,7 @@ footer {
   margin-top: 35px;
   font-size: 13.5px;
   &__icon-wrapper {
-    background: rgba($blue, 0.1);
+    background: rgba($yellow, 0.1);
     width: 35px;
     height: 35px;
     @include flexCenter;
@@ -1605,11 +1369,11 @@ footer {
     svg {
       height: 17px;
       width: 17px;
-      fill: $blue;
+      fill: $yellow;
     }
   }
   p {
-    color: $blue;
+    color: $yellow;
     margin: 0;
     margin-left: 10px;
   }
