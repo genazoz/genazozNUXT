@@ -16,7 +16,7 @@ export default ({ app, store }) => {
   })
 
   app.i18n.path = (link) => {
-    if (app.i18n.locale === app.i18n.fallbackLocale) {
+    if (app.i18n.locale === store.state.locale) {
       return `/${link}`
     }
 

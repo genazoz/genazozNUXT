@@ -1,4 +1,4 @@
-section.project{
+section.project {
   width: 100%;
   height: 100vh;
   background: black;
@@ -9,774 +9,781 @@ section.project{
   transition-timing-function: unset;
   //transition: .5s all;
 }
-.background{
+.background {
   position: fixed;
   z-index: -2;
-  opacity: .3;
+  opacity: 0.3;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   @include backgroundCC;
-  &.cyspnet{
-    @include for-size(phone-only){
-      background-image: url('../img/projects/mobile/2.jpg') !important;
+  &.cyspnet {
+    @include for-size(phone-only) {
+      background-image: url("../img/projects/mobile/2.jpg") !important;
     }
   }
-  &.asiafest{
-    @include for-size(phone-only){
-      background-image: url('../img/projects/mobile/3.jpg') !important;
+  &.asiafest {
+    @include for-size(phone-only) {
+      background-image: url("../img/projects/mobile/3.jpg") !important;
     }
   }
-  &.davinci{
-    @include for-size(phone-only){
-      background-image: url('../img/projects/mobile/5.jpg') !important;
+  &.davinci {
+    @include for-size(phone-only) {
+      background-image: url("../img/projects/mobile/5.jpg") !important;
     }
   }
-  &.y-15{
-    @include for-size(phone-only){
-      background-image: url('../img/projects/mobile/6.png') !important;
+  &.y-15 {
+    @include for-size(phone-only) {
+      background-image: url("../img/projects/mobile/6.png") !important;
     }
   }
-  &.genazoz2{
-    @include for-size(phone-only){
-      background-image: url('../img/projects/mobile/3.png') !important;
+  &.genazoz2 {
+    @include for-size(phone-only) {
+      background-image: url("../img/projects/mobile/3.png") !important;
     }
   }
-  @include for-size(phone-only){
+  @include for-size(phone-only) {
     filter: unset;
     // display: none !important;
   }
 }
-section.project.cyspnet{
-  .logoColorFont__wrapper, .fonts{
+section.project.cyspnet {
+  .logoColorFont__wrapper,
+  .fonts {
     width: 95%;
     margin: auto;
   }
 }
-.preview{
+.preview {
+  width: 100%;
+  height: 100vh;
+  opacity: 1 !important;
+  overflow: hidden !important;
+  position: relative;
+  &__about {
     width: 100%;
-    height: 100vh;
-    opacity: 1 !important;
-    overflow: hidden !important;
-    position: relative;
-    &__about{
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      background: #ddd;
-      left: 60px;
-      padding: 0 0 30px 0;
-      bottom: 100px;
+    max-width: 100%;
+    height: auto;
+    background: #ddd;
+    left: 60px;
+    padding: 0 0 30px 0;
+    bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .about-wrapper {
+      @include wrapper;
+    }
+    .infos-wrapper {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      .about-wrapper{
-        @include wrapper;
-      }
-      .infos-wrapper{
-        display: flex;
-        justify-content: space-between;
-        @include for-size(phone-only){
-          flex-direction: column;
-        }
-      }
-      .info-wrapper{
-        display: flex;
+      justify-content: space-between;
+      @include for-size(phone-only) {
         flex-direction: column;
-        margin: 20px 0;
-        align-items: flex-start;
-        &__title{
-          color: black;
-        }
-        &__text{
-          color: black;
-          font-family: 'Segoe UI Regular';
-          font-size: $font-size*1;
-          margin-top: 5px;
-          @include for-size(full-hd){
-            font-size: $font-size*1.2;
-          }
-        }
       }
     }
-    &_two{
-      height: 100vh;
-      padding: 0;
+    .info-wrapper {
       display: flex;
-      align-items: center;
-      &.nobackground{
-        .upper-background{
-          position: fixed;
-          z-index: -1;
-          opacity: 1;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          @include backgroundCC;
-          // filter: blur(14px) brightness(.7);
-          opacity: 0;
-          @include for-size(phone-only){
-            filter: unset;
-            display: none !important;
-          }
-        }
-        .preview__title{
-          a{
-            // color: transparent;
-            // color: rgba(255,255,255,.3);
-            // -webkit-text-stroke: 0px white !important;
-          }
-        }
+      flex-direction: column;
+      margin: 20px 0;
+      align-items: flex-start;
+      &__title {
+        color: black;
       }
-      .preview__title{
-        width: 100%;
-        height: auto;
-        overflow: hidden;
-        font-size: 47vw;
-        font-family: TTBluescreens-Bold;
-        position: relative;
-        opacity: 0;
-        display: flex;
-        justify-content: center;
-        span{
-            text-transform: uppercase;
-            word-break: normal;
-            text-align: center;
-        }
-        a{
-          color: transparent;
-        }
-        // &:hover{
-        //   -webkit-text-stroke: 1px transparent;
-        //   -webkit-background-clip: text;
-        //   -webkit-text-fill-color: transparent;
-        //   background-image: url('../img/04.jpg');
-        //   background-size: cover;
-        // }
-        @include for-size(phone-only){
-          font-size: 300px;
-          overflow: visible;
-          // background: red;
-          max-width: unset;
-          width: 100vw;
-          height: 100vh;
-          display: flex;
-          left: 0;
-          align-items: center;
-          justify-content: center;
-          padding-right: 40px;
-          margin: 0;
-          span{
-              position: absolute;
-              transform: rotate(90deg);
-              width: 100vh;
-          }
+      &__text {
+        color: black;
+        font-family: "Segoe UI Regular";
+        font-size: $font-size * 1;
+        margin-top: 5px;
+        @include for-size(full-hd) {
+          font-size: $font-size * 1.2;
         }
       }
     }
   }
-  .project{
-    &__img-wrapper{
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 46px 0 0 0;
-      flex-direction: column;
-      @include for-size(tablet-portrait-up){
-        padding: 120px 0 0 0;
-      }
-      h1, h2{
-        font-family: "Noto Sans";
-        font-weight: 200;
-        text-transform: unset;
+  &_two {
+    height: 100vh;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    &.nobackground {
+      .upper-background {
+        position: fixed;
+        z-index: -1;
+        opacity: 1;
         width: 100%;
-        // 71%
-        text-align: center;
-        @include for-size(phone-only){
-          width: calc(100% - 60px);
-        }
-      }
-      h2{
-        margin-bottom: 46px;
-        font-size: 21px;
-        // text-align: center;
-      }
-      img{
-        width: 100%;
-        margin: auto;
-      }
-    }
-    &__advantages{
-      padding: 0px 0 !important;
-      margin-top: 150px;
-      margin-bottom: 150px;
-      @include for-size(phone-only){
-        margin-bottom: 150px;
-      }
-      .about__text{
-        border-bottom: 1px solid white;
-        padding-bottom: 90px;
-        width: 70%;
-        @include for-size(phone-only){
-          width: 100%;
-        }
-      }
-      h3{
-        margin: 0;
-        // padding-top: 50px;
-        text-align: left;
-        // border-top: 1px solid white;
-      }
-    }
-    &__about{
-      height: auto !important;
-      position: relative;
-      display: flex;
-      z-index: 1;
-      justify-content: center;
-      background: black;
-      padding: 80px 0;
-      &.nobackground{
-        background: transparent !important;
-        padding: 100px 0 130px 0;
-        .about{
-          &__text{
-            color: white;
-          }
-        }
-      }
-      .about{
-        display: none;
-        &__title{
-          text-transform: uppercase;
-          max-width: 100%;
-          word-wrap: break-word;
-          font-size: 150px;
-          font-family: TTBluescreens-Bold;
-          text-align: left;
-          @include for-size(phone-only){
-            margin: 0;
-            margin-bottom: 20px;
-            text-align: left;
-          }
-        }
-        &__text{
-          font-size: $font-size*1;
-          @include for-size(full-hd){
-            font-size: $font-size*1.2;
-          }
-          color: $gray;
-          font-family: Coolvetica;
-          font-family: 'Segoe UI Regular';
-          text-transform: unset;
-          max-width: 90%;
-        }
-        &__wrapper{
-          @include wrapper;
-          background: unset;
-        }
-      }
-    }
-    &__video-wrapper{
-      width: 100%;
-      height: auto;
-      background: #ddd;
-      img{
-        display: none;
-        &[active]{
-          display: block;
-        }
-      }
-      .spinner{
-        position: absolute;
-        margin: 0;
-        &[disactive]{
-          // display: none;
-        }
-      }
-      &.nobackground{
-        background: transparent;
-        .project__video{
-          background: transparent;
-          padding: 0px 0;
-        }
-        .video-before{
-          height: auto;
-          width: 87%;
-          @include for-size(tablet-portrait-up){
-            width: 100%;
-          }
-        }
-      }
-    }
-    &__video{
-      height: auto;
-      padding: 0px 0 20px 0;
-      background: #ddd;
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      @include wrapper;
-      width: 100%;
-      margin: auto;
-      margin-top: -210px;
-      overflow: visible !important;
-      @include for-size(tablet-portrait-up){
-        padding: 0px;
-        margin-top: 0px;
-      }
-      &[active]{
-        &:before, &:after{
-          display: none;
-        }
-      }
-      .video-before{
-        width: 60%;
-        position: relative;
-        box-shadow: 0px 45px 80px -30px rgba(0,0,0,.5);
-        height: auto;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        &.asiafest{
-          img{
-            margin-left: -25px;
-            margin-right: -25px;
-          }
-        }
-        @include for-size(tablet-portrait-up){
-          width: 100%;
-        }
-      }
-      img{
-        width: 101%;
         height: 100%;
-        position: relative;
-        display: block;
-        margin-left: -3px;
-        margin-bottom: -3px !important;
-        margin-top: -3px !important;
-      }
-    }
-    &__logoColorFont{
-      display: flex;
-      justify-content: center;
-      height: auto;
-      background: #ddd;
-      padding: 80px 0;
-      color: black;
-      &.nobackground{
-        padding: 120px 0 80px 0;
-        background: transparent !important;
-        .logoColorFont{
-          &__wrapper{
-            border-bottom: 1px solid white;
-            padding-bottom: 120px;
-          }
-        }
-      }
-    }
-    .logoColorFont{
-      &__wrapper{
-        display: flex;
-        justify-content: space-between;
-        width: 87%;
-        max-width: 1600px;
-        background: unset;
-        @include for-size(tablet-portrait-up){
-          flex-direction: column;
-        }
-      }
-    }
-    .logo-wrapper, .color-wrapper, .fonts{
-      width: 33.3%;
-      text-align: center;
-      @include for-size(tablet-portrait-up){
-        width: 100%;
-      }
-      padding-bottom: 60px;
-    }
-    .logo-wrapper{
-      border-right: 1px solid black;
-      @include for-size(tablet-portrait-up){
-        border: 0;
-      }
-      .logo{
-        color: black !important;
-        margin: auto;
-        margin-top: 100px;
-        @include for-size(tablet-portrait-up){
-          margin-top: 40px;
-        }
-      }
-      .logo-img{
-        margin: auto;
-        margin-top: 70px;
-        width: 100px;
-        height: 100px;
+        top: 0;
+        left: 0;
         @include backgroundCC;
-        background-size: contain !important;
-        @include for-size(tablet-portrait-up){
-          margin-top: 40px;
-        }
-      }
-    }
-    .color-wrapper{
-      border-right: 1px solid black;
-      @include for-size(tablet-portrait-up){
-        border: 0;
-      }
-      .colors-wrapper{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        @include for-size(tablet-portrait-up){
-          flex-direction: row;
-          justify-content: center;
-        }
-        .color{
-          min-width: 30px;
-          min-height: 30px;
-          border-radius: 100px;
-          margin: 25px 0 0 0;
-          // border: 2px solid black;
-          box-shadow: 0 0 20px rgba(0,0,0,.1);
-          @include for-size(tablet-portrait-up){
-            margin: 40px 15px 0 15px;
-          }
-        }
-      }
-    }
-    .fonts{
-      padding: 0 20px;
-    }
-    .fonts-wrapper{
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
-    .font-wrapper{
-      width: 35%;
-      margin: 35px 0 0 0;
-      text-align: left;
-      .font{
-        border-bottom: 1px solid black;
-        padding-bottom: 5px;
-        margin-bottom: 5px;
-        font-size: 20px;
-      }
-    }
-    &__logo-evolution{
-      height: auto !important;
-      position: relative;
-      display: flex;
-      z-index: 1;
-      justify-content: center;
-      flex-direction: column;
-      align-items: center;
-      background: black;
-      padding: 80px 0;
-      @include for-size(phone-only){
-        // padding: 80px 0 80px 0px;
-      }
-      .title{
-        margin-bottom: 50px;
-      }
-    }
-    .logo-evolution__wrapper{
-      width: 87%;
-      max-width: 1600px;
-      background: unset;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      @include for-size(phone-only){
-        flex-direction: column;
-      }
-    }
-    .logo-evolution__img{
-      width: 150px;
-      height: 90px;
-      @include for-size(phone-only){
-        margin-bottom: 30px;
-      }
-      background-size: contain;
-      background-repeat: no-repeat;
-      &:nth-child(1){
-        background-image: url('../img/genazoz/by genazozulya.png');
-      }
-      &:nth-child(2){
-        background-image: url('../img/genazoz/logo2.png');
-      }
-      &:nth-child(3){
-        background-image: url('../img/genazoz/Group 7.png');
-      }
-      background-position: center;
-    }
-    &__adaptive{
-      width: 100%;
-      height: auto;
-      position: relative;
-      //margin-bottom: -340px;
-      // padding: 100px 0 0 0;
-      padding-bottom: 320px;
-      padding-top: 52px;
-      overflow: hidden;
-      @include for-size(phone-only){
-        height: 100vh;
-      }
-      &_light{
-        background: #ddd;
-      }
-      &.nobackground{
-        background: #ddd;
-        &:before{
-          content: '';
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          background: #ddd;
-          opacity: 1 !important;
-          z-index: 0;
-          @include for-size(phone-only){
-            background: #ddd;
-            opacity: .99;
-            z-index: 1;
-          }
-        }
-      }
-      @include for-size(phone-only){
-        padding: 0px 0 120px 0px;
-      }
-      @include for-size(phone-min){
-          display: none;
-      }
-      .title{
-        @include for-size(phone-only){
+        // filter: blur(14px) brightness(.7);
+        opacity: 0;
+        @include for-size(phone-only) {
+          filter: unset;
           display: none !important;
         }
       }
+      .preview__title {
+        a {
+          // color: transparent;
+          // color: rgba(255,255,255,.3);
+          // -webkit-text-stroke: 0px white !important;
+        }
+      }
     }
-    &__tech{
-      background: black;
+    .preview__title {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      font-size: 47vw;
+      font-family: TTBluescreens-Bold;
+      position: relative;
+      opacity: 0;
+      display: flex;
+      justify-content: center;
+      span {
+        text-transform: uppercase;
+        word-break: normal;
+        text-align: center;
+      }
+      a {
+        color: transparent;
+      }
+      // &:hover{
+      //   -webkit-text-stroke: 1px transparent;
+      //   -webkit-background-clip: text;
+      //   -webkit-text-fill-color: transparent;
+      //   background-image: url('../img/04.jpg');
+      //   background-size: cover;
+      // }
+      @include for-size(phone-only) {
+        font-size: 300px;
+        overflow: visible;
+        // background: red;
+        max-width: unset;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        left: 0;
+        align-items: center;
+        justify-content: center;
+        padding-right: 40px;
+        margin: 0;
+        span {
+          position: absolute;
+          transform: rotate(90deg);
+          width: 100vh;
+        }
+      }
+    }
+  }
+}
+.project {
+  &__img-wrapper {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 46px 0 0 0;
+    flex-direction: column;
+    @include for-size(tablet-portrait-up) {
+      padding: 120px 0 0 0;
+    }
+    h1,
+    h2 {
+      font-family: "Noto Sans";
+      font-weight: 200;
+      text-transform: unset;
+      width: 100%;
+      // 71%
+      text-align: center;
+      @include for-size(phone-only) {
+        width: calc(100% - 60px);
+      }
+    }
+    h2 {
+      margin-bottom: 46px;
+      font-size: 21px;
+      // text-align: center;
+    }
+    img {
+      width: 100%;
+      margin: auto;
+    }
+  }
+  &__advantages {
+    padding: 0px 0 !important;
+    margin-top: 150px;
+    margin-bottom: 150px;
+    @include for-size(phone-only) {
+      margin-bottom: 150px;
+    }
+    .about__text {
+      border-bottom: 1px solid white;
+      padding-bottom: 90px;
+      width: 70%;
+      @include for-size(phone-only) {
+        width: 100%;
+      }
+    }
+    h3 {
+      margin: 0;
+      // padding-top: 50px;
+      text-align: left;
+      // border-top: 1px solid white;
+    }
+  }
+  &__about {
+    height: auto !important;
+    position: relative;
+    display: flex;
+    z-index: 1;
+    justify-content: center;
+    background: black;
+    padding: 80px 0;
+    &.nobackground {
+      background: transparent !important;
+      padding: 100px 0 130px 0;
+      .about {
+        &__text {
+          color: white;
+        }
+      }
+    }
+    .about {
+      display: none;
+      &__title {
+        text-transform: uppercase;
+        max-width: 100%;
+        word-wrap: break-word;
+        font-size: 150px;
+        font-family: TTBluescreens-Bold;
+        text-align: left;
+        @include for-size(phone-only) {
+          margin: 0;
+          margin-bottom: 20px;
+          text-align: left;
+        }
+      }
+      &__text {
+        font-size: $font-size * 1;
+        @include for-size(full-hd) {
+          font-size: $font-size * 1.2;
+        }
+        color: $gray;
+        font-family: Coolvetica;
+        font-family: "Segoe UI Regular";
+        text-transform: unset;
+        max-width: 90%;
+      }
+      &__wrapper {
+        @include wrapper;
+        background: unset;
+      }
+    }
+  }
+  &__video-wrapper {
+    width: 100%;
+    height: auto;
+    background: #ddd;
+    img {
+      display: none;
+      &[active] {
+        display: block;
+      }
+    }
+    .spinner {
+      position: absolute;
+      margin: 0;
+      &[disactive] {
+        // display: none;
+      }
+    }
+    &.nobackground {
+      background: transparent;
+      .project__video {
+        background: transparent;
+        padding: 0px 0;
+      }
+      .video-before {
+        height: auto;
+        width: 87%;
+        @include for-size(tablet-portrait-up) {
+          width: 100%;
+        }
+      }
+    }
+  }
+  &__video {
+    height: auto;
+    padding: 0px 0 20px 0;
+    background: #ddd;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include wrapper;
+    width: 100%;
+    margin: auto;
+    margin-top: -210px;
+    overflow: visible !important;
+    @include for-size(tablet-portrait-up) {
+      padding: 0px;
+      margin-top: 0px;
+    }
+    &[active] {
+      &:before,
+      &:after {
+        display: none;
+      }
+    }
+    .video-before {
+      width: 60%;
+      position: relative;
+      box-shadow: 0px 45px 80px -30px rgba(0, 0, 0, 0.5);
+      height: auto;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &.asiafest {
+        img {
+          margin-left: -25px;
+          margin-right: -25px;
+        }
+      }
+      @include for-size(tablet-portrait-up) {
+        width: 100%;
+      }
+    }
+    img {
+      width: 101%;
+      height: 100%;
+      position: relative;
+      display: block;
+      margin-left: -3px;
+      margin-bottom: -3px !important;
+      margin-top: -3px !important;
+    }
+  }
+  &__logoColorFont {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    background: #ddd;
+    padding: 80px 0;
+    color: black;
+    &.nobackground {
+      padding: 120px 0 80px 0;
+      background: transparent !important;
+      .logoColorFont {
+        &__wrapper {
+          border-bottom: 1px solid white;
+          padding-bottom: 120px;
+        }
+      }
+    }
+  }
+  .logoColorFont {
+    &__wrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 87%;
+      max-width: 1600px;
+      background: unset;
+      @include for-size(tablet-portrait-up) {
+        flex-direction: column;
+      }
+    }
+  }
+  .logo-wrapper,
+  .color-wrapper,
+  .fonts {
+    width: 33.3%;
+    text-align: center;
+    @include for-size(tablet-portrait-up) {
+      width: 100%;
+    }
+    padding-bottom: 60px;
+  }
+  .logo-wrapper {
+    border-right: 1px solid black;
+    @include for-size(tablet-portrait-up) {
+      border: 0;
+    }
+    .logo {
+      color: black !important;
+      margin: auto;
+      margin-top: 100px;
+      @include for-size(tablet-portrait-up) {
+        margin-top: 40px;
+      }
+    }
+    .logo-img {
+      margin: auto;
+      margin-top: 70px;
+      width: 100px;
+      height: 100px;
+      @include backgroundCC;
+      background-size: contain !important;
+      @include for-size(tablet-portrait-up) {
+        margin-top: 40px;
+      }
+    }
+  }
+  .color-wrapper {
+    border-right: 1px solid black;
+    @include for-size(tablet-portrait-up) {
+      border: 0;
+    }
+    .colors-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 100px 0;
-      .title{
+      @include for-size(tablet-portrait-up) {
+        flex-direction: row;
+        justify-content: center;
       }
-      @include for-size(phone-only){
-        padding: 0px 0 80px 0px;
-      }
-    }
-  }
-  .adaptive{
-    &__wrapper{
-      position: relative;
-      z-index: 2;
-      width: 1500px;
-      height: 1500px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: -250px;
-      @include for-size(tablet-portrait-up){
-        bottom: 0;
-        top: unset;
-        margin-top: -110px;
-      }
-      @include for-size(phone-only){
-        width: 450px;
-        height: 460px;
-        bottom: 0;
-        top: 180px;
-        bottom: 0;
-        left: 50px;
-        transform: scale(1.85) !important;
-      }
-    }
-    &__iphone, &__iphone5S, &__ipad{
-      transform: rotate(-30deg);
-      &.show{
-        transition: .4s all;
-        opacity: 1;
-        transform: scale(1) rotate(-30deg);
-        margin-top: 0px;
-      }
-    }
-    &__iphone{
-      position: absolute;
-      width: 20%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 4;
-      &:nth-child(1){
-        top: 25%;
-        left: -5.3%;
-      }
-      &:nth-child(2){
-        top: 8.8%;
-        left: 7.3%;
-      }
-      &:nth-child(3){
-        top: 13.3%;
-        left: 31.7%;
-      }
-      &:nth-child(6){
-        top: .2%;
-        left: 45.7%;
-      }
-      &:nth-child(7){
-        top: 44%;
-        left: 49.5%;
-      }
-      &:nth-child(8){
-        top: 30.8%;
-        left: 63.7%;
-      }
-      img:nth-child(1){
-        width: 100%;
-        z-index: 1;
-      }
-      img:nth-child(2){
-        width: 100%;
-        position: absolute;
-        z-index: 3;
-      }
-      img:nth-child(3){
-        width: 72.3%;
-        margin-left: 0px;
-        position: absolute;
-        z-index: 2;
-      }
-    }
-    &__iphone5S{
-      position: absolute;
-      width: 20%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 4;
-      &:nth-child(4){
-        top: 39.7%;
-        left: 26%;
-      }
-      &:nth-child(5){
-        top: 71.4%;
-        left: 44.4%;
-      }
-      img:nth-child(1){
-        width: 100%;
-        z-index: 1;
-      }
-      img:nth-child(2){
-        width: 68.5%;
-        position: absolute;
-        z-index: 3;
-        margin-top: -5px;
-        margin-left: -5px;
-      }
-      @include for-size(phone-only){
-        img:nth-child(2){
-            width: 69%;
-            margin-top: -2px;
-            margin-left: -1px;
-        }
-      }
-    }
-    &__ipad{
-      position: absolute;
-      width: 35%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-      left: 15%;
-      top: 40%;
-      &:nth-child(9){
-        top: 58.7%;
-        left: 1.3%;
-      }
-      &:nth-child(10){
-        top: 69.4%;
-        left: 70.4%;
-      }
-      img:nth-child(1){
-        width: 100%;
-        z-index: 1;
-      }
-      img:nth-child(2){
-        width: 84.3%;
-        margin-top: 2px;
-        margin-left: -3px;
-        position: absolute;
-        z-index: 2;
-        border-radius: 4px;
-        @include for-size(phone-only){
-          margin-left: -1px;
-          margin-top: 0;
+      .color {
+        min-width: 30px;
+        min-height: 30px;
+        border-radius: 100px;
+        margin: 25px 0 0 0;
+        // border: 2px solid black;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        @include for-size(tablet-portrait-up) {
+          margin: 40px 15px 0 15px;
         }
       }
     }
   }
-  .grid{
-    height: auto;
+  .fonts {
+    padding: 0 20px;
+  }
+  .fonts-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .font-wrapper {
+    width: 35%;
+    margin: 35px 0 0 0;
+    text-align: left;
+    .font {
+      border-bottom: 1px solid black;
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+      font-size: 20px;
+    }
+  }
+  &__logo-evolution {
+    height: auto !important;
+    position: relative;
+    display: flex;
+    z-index: 1;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: black;
+    padding: 80px 0;
+    @include for-size(phone-only) {
+      // padding: 80px 0 80px 0px;
+    }
+    .title {
+      margin-bottom: 50px;
+    }
+  }
+  .logo-evolution__wrapper {
     width: 87%;
     max-width: 1600px;
+    background: unset;
     display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: center;
-    @include for-size(phone-only){
-      margin-top: 50px !important;
+    justify-content: space-around;
+    align-items: center;
+    @include for-size(phone-only) {
+      flex-direction: column;
     }
-    &__tech{
-      width: 25%;
-      height: 300px;
-      background: transparent;
-      border: .5px solid #222;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: .3s all;
-      @include for-size(phone-only){
-        width: 50%;
-        height: 150px;
-      }
-      &.active{
-        .tech__img{
-          filter: grayscale(0) brightness(1);
+  }
+  .logo-evolution__img {
+    width: 150px;
+    height: 90px;
+    @include for-size(phone-only) {
+      margin-bottom: 30px;
+    }
+    background-size: contain;
+    background-repeat: no-repeat;
+    &:nth-child(1) {
+      background-image: url("../img/genazoz/by genazozulya.png");
+    }
+    &:nth-child(2) {
+      background-image: url("../img/genazoz/logo2.png");
+    }
+    &:nth-child(3) {
+      background-image: url("../img/genazoz/Group 7.png");
+    }
+    background-position: center;
+  }
+  &__adaptive {
+    width: 100%;
+    height: auto;
+    position: relative;
+    //margin-bottom: -340px;
+    // padding: 100px 0 0 0;
+    padding-bottom: 320px;
+    padding-top: 52px;
+    overflow: hidden;
+    @include for-size(phone-only) {
+      height: 100vh;
+    }
+    &_light {
+      background: #ddd;
+    }
+    &.nobackground {
+      background: #ddd;
+      &:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: #ddd;
+        opacity: 1 !important;
+        z-index: 0;
+        @include for-size(phone-only) {
+          background: #ddd;
+          opacity: 0.99;
+          z-index: 1;
         }
       }
-      .tech__img{
-        width: 65px;
-        height: 65px;
-        @include backgroundCC();
-        background-size: contain;
-        background-repeat: no-repeat;
-        filter: grayscale(1) brightness(.3);
-        transition: .3s all;
-        @include for-size(phone-only){
-          width: 45px;
-          height: 45px;
-        }
+    }
+    @include for-size(phone-only) {
+      padding: 0px 0 120px 0px;
+    }
+    @include for-size(phone-min) {
+      display: none;
+    }
+    .title {
+      @include for-size(phone-only) {
+        display: none !important;
       }
     }
   }
+  &__tech {
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 0;
+    .title {
+    }
+    @include for-size(phone-only) {
+      padding: 0px 0 80px 0px;
+    }
+  }
+}
+.adaptive {
+  &__wrapper {
+    position: relative;
+    z-index: 2;
+    width: 1500px;
+    height: 1500px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -250px;
+    @include for-size(tablet-portrait-up) {
+      bottom: 0;
+      top: unset;
+      margin-top: -110px;
+    }
+    @include for-size(phone-only) {
+      width: 450px;
+      height: 460px;
+      bottom: 0;
+      top: 180px;
+      bottom: 0;
+      left: 50px;
+      transform: scale(1.85) !important;
+    }
+  }
+  &__iphone,
+  &__iphone5S,
+  &__ipad {
+    transform: rotate(-30deg);
+    &.show {
+      transition: 0.4s all;
+      opacity: 1;
+      transform: scale(1) rotate(-30deg);
+      margin-top: 0px;
+    }
+  }
+  &__iphone {
+    position: absolute;
+    width: 20%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+    &:nth-child(1) {
+      top: 25%;
+      left: -5.3%;
+    }
+    &:nth-child(2) {
+      top: 8.8%;
+      left: 7.3%;
+    }
+    &:nth-child(3) {
+      top: 13.3%;
+      left: 31.7%;
+    }
+    &:nth-child(6) {
+      top: 0.2%;
+      left: 45.7%;
+    }
+    &:nth-child(7) {
+      top: 44%;
+      left: 49.5%;
+    }
+    &:nth-child(8) {
+      top: 30.8%;
+      left: 63.7%;
+    }
+    img:nth-child(1) {
+      width: 100%;
+      z-index: 1;
+    }
+    img:nth-child(2) {
+      width: 100%;
+      position: absolute;
+      z-index: 3;
+    }
+    img:nth-child(3) {
+      width: 72.3%;
+      margin-left: 0px;
+      position: absolute;
+      z-index: 2;
+    }
+  }
+  &__iphone5S {
+    position: absolute;
+    width: 20%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+    &:nth-child(4) {
+      top: 39.7%;
+      left: 26%;
+    }
+    &:nth-child(5) {
+      top: 71.4%;
+      left: 44.4%;
+    }
+    img:nth-child(1) {
+      width: 100%;
+      z-index: 1;
+    }
+    img:nth-child(2) {
+      width: 68.5%;
+      position: absolute;
+      z-index: 3;
+      margin-top: -5px;
+      margin-left: -5px;
+    }
+    @include for-size(phone-only) {
+      img:nth-child(2) {
+        width: 69%;
+        margin-top: -2px;
+        margin-left: -1px;
+      }
+    }
+  }
+  &__ipad {
+    position: absolute;
+    width: 35%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    left: 15%;
+    top: 40%;
+    &:nth-child(9) {
+      top: 58.7%;
+      left: 1.3%;
+    }
+    &:nth-child(10) {
+      top: 69.4%;
+      left: 70.4%;
+    }
+    img:nth-child(1) {
+      width: 100%;
+      z-index: 1;
+    }
+    img:nth-child(2) {
+      width: 84.3%;
+      margin-top: 2px;
+      margin-left: -3px;
+      position: absolute;
+      z-index: 2;
+      border-radius: 4px;
+      @include for-size(phone-only) {
+        margin-left: -1px;
+        margin-top: 0;
+      }
+    }
+  }
+}
+.grid {
+  height: auto;
+  width: 87%;
+  max-width: 1600px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  @include for-size(phone-only) {
+    margin-top: 50px !important;
+  }
+  &__tech {
+    width: 25%;
+    height: 300px;
+    background: transparent;
+    border: 0.5px solid #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s all;
+    @include for-size(phone-only) {
+      width: 50%;
+      height: 150px;
+    }
+    &.active {
+      .tech__img {
+        filter: grayscale(0) brightness(1);
+      }
+    }
+    .tech__img {
+      width: 65px;
+      height: 65px;
+      @include backgroundCC();
+      background-size: contain;
+      background-repeat: no-repeat;
+      filter: grayscale(1) brightness(0.3);
+      transition: 0.3s all;
+      @include for-size(phone-only) {
+        width: 45px;
+        height: 45px;
+      }
+    }
+  }
+}
 $colorBg: #000000;
 $colorOutline: #ffffff;
 $colorOutlineFade: #4e5559;
@@ -795,8 +802,7 @@ $shrinkTrackball: 0.4;
 $animDuration: 5s;
 
 @mixin bgGradient {
-  background:
-    $colorOutlineFade
+  background: $colorOutlineFade
     linear-gradient(
       transparent 0%,
       transparent 50%,
@@ -805,67 +811,48 @@ $animDuration: 5s;
     );
 }
 
-.mouse {
-  @include bgGradient;
-  position: absolute;
-  margin: auto;
-  left: 0;
-  right: 0;
-  bottom: 30px;
-  width: $widthMouse;
-  height: $heightMouse;
-  border-radius: 100px;
-  background-size: 100% 200%;
-  animation: 
-    colorSlide $animDuration linear infinite,
-    nudgeMouse $animDuration ease-out infinite;
-  &:before,
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    margin: auto;
+@keyframes colorSlide {
+  0% {
+    background-position: 0% 100%;
   }
-  &:before {
-    width: $widthMouse - $borderMouse;
-    height: $heightMouse - $borderMouse;
-    background-color: $colorBg;
-    border-radius: 100px;
+  20% {
+    background-position: 0% 0%;
   }
-  &:after {
-    background-color: $colorOutline;
-    width: $sizeTrackball;
-    height: $sizeTrackball;
-    border-radius: 100%;
-    animation: trackBallSlide $animDuration linear infinite;
+  21% {
+    background-color: $colorOutlineFade;
   }
-}
-
-@keyframes colorSlide { 
-  0% { background-position: 0% 100%; }
-  20% { background-position: 0% 0%; }
-  21% { background-color: $colorOutlineFade; }
-  29.99% { 
+  29.99% {
     background-color: $colorOutline;
     background-position: 0% 0%;
   }
-  30% { 
+  30% {
     background-color: $colorOutlineFade;
     background-position: 0% 100%;
   }
-  50% { background-position: 0% 0%; }
-  51% { background-color: $colorOutlineFade; }
-  59% { 
+  50% {
+    background-position: 0% 0%;
+  }
+  51% {
+    background-color: $colorOutlineFade;
+  }
+  59% {
     background-color: $colorOutline;
     background-position: 0% 0%;
   }
-  60% { 
+  60% {
     background-color: $colorOutlineFade;
     background-position: 0% 100%;
   }
-  80% { background-position: 0% 0%; }
-  81% { background-color: $colorOutlineFade; }
-  90%, 100% { background-color: $colorOutline; }
+  80% {
+    background-position: 0% 0%;
+  }
+  81% {
+    background-color: $colorOutlineFade;
+  }
+  90%,
+  100% {
+    background-color: $colorOutline;
+  }
 }
 
 @keyframes trackBallSlide {
@@ -873,19 +860,21 @@ $animDuration: 5s;
     opacity: 1;
     transform: scale(1) translateY(-$posTrackball);
   }
-  6% { 
+  6% {
     opacity: 1;
     transform: scale(0.9) translateY($posTrackball/4);
   }
   14% {
     opacity: 0;
-    transform: scale($shrinkTrackball) translateY($posTrackball*2);
+    transform: scale($shrinkTrackball) translateY($posTrackball * 2);
   }
-  15%, 19% {
+  15%,
+  19% {
     opacity: 0;
     transform: scale($shrinkTrackball) translateY(-$posTrackball);
   }
-  28%, 29.99% {
+  28%,
+  29.99% {
     opacity: 1;
     transform: scale(1) translateY(-$posTrackball);
   }
@@ -893,19 +882,21 @@ $animDuration: 5s;
     opacity: 1;
     transform: scale(1) translateY(-$posTrackball);
   }
-  36% { 
+  36% {
     opacity: 1;
     transform: scale(0.9) translateY($posTrackball/4);
   }
   44% {
     opacity: 0;
-    transform: scale($shrinkTrackball) translateY($posTrackball*2);
+    transform: scale($shrinkTrackball) translateY($posTrackball * 2);
   }
-  45%, 49% {
+  45%,
+  49% {
     opacity: 0;
     transform: scale($shrinkTrackball) translateY(-$posTrackball);
   }
-  58%, 59.99% {
+  58%,
+  59.99% {
     opacity: 1;
     transform: scale(1) translateY(-$posTrackball);
   }
@@ -913,53 +904,94 @@ $animDuration: 5s;
     opacity: 1;
     transform: scale(1) translateY(-$posTrackball);
   }
-  66% { 
+  66% {
     opacity: 1;
     transform: scale(0.9) translateY($posTrackball/4);
   }
   74% {
     opacity: 0;
-    transform: scale($shrinkTrackball) translateY($posTrackball*2);
+    transform: scale($shrinkTrackball) translateY($posTrackball * 2);
   }
-  75%, 79% {
+  75%,
+  79% {
     opacity: 0;
     transform: scale($shrinkTrackball) translateY(-$posTrackball);
   }
-  88%, 100% {
+  88%,
+  100% {
     opacity: 1;
     transform: scale(1) translateY(-$posTrackball);
   }
 }
 
 @keyframes nudgeMouse {
-  0% { transform: translateY(0); }
-  20% { transform: translateY($posMouse); }
-  30% { transform: translateY(0); }
-  50% { transform: translateY($posMouse); }
-  60% { transform: translateY(0); }
-  80% { transform: translateY($posMouse); }
-  90% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY($posMouse);
+  }
+  30% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY($posMouse);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY($posMouse);
+  }
+  90% {
+    transform: translateY(0);
+  }
 }
 
 @keyframes nudgeText {
-  0% { transform: translateY(0); }
-  20% { transform: translateY($posText); }
-  30% { transform: translateY(0); }
-  50% { transform: translateY($posText); }
-  60% { transform: translateY(0); }
-  80% { transform: translateY($posText); }
-  90% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY($posText);
+  }
+  30% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY($posText);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY($posText);
+  }
+  90% {
+    transform: translateY(0);
+  }
 }
 
-@keyframes colorText { 
-  21% { color: $colorOutlineFade; }
-  30% { color: $colorOutline; }
-  51% { color: $colorOutlineFade; }
-  60% { color: $colorOutline; }
-  81% { color: $colorOutlineFade; }
-  90% { color: $colorOutline; }
+@keyframes colorText {
+  21% {
+    color: $colorOutlineFade;
+  }
+  30% {
+    color: $colorOutline;
+  }
+  51% {
+    color: $colorOutlineFade;
+  }
+  60% {
+    color: $colorOutline;
+  }
+  81% {
+    color: $colorOutlineFade;
+  }
+  90% {
+    color: $colorOutline;
+  }
 }
-
 
 .spinner {
   width: 40px;
@@ -969,7 +1001,8 @@ $animDuration: 5s;
   margin: 100px auto;
 }
 
-.double-bounce1, .double-bounce2 {
+.double-bounce1,
+.double-bounce2 {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -978,27 +1011,29 @@ $animDuration: 5s;
   position: absolute;
   top: 0;
   left: 0;
-  
-  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
-  animation: sk-bounce 2.0s infinite ease-in-out;
 }
 
 .double-bounce2 {
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
 }
 
 @-webkit-keyframes sk-bounce {
-  0%, 100% { -webkit-transform: scale(0.0) }
-  50% { -webkit-transform: scale(1.0) }
+  0%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(1);
+  }
 }
 
 @keyframes sk-bounce {
-  0%, 100% { 
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 50% { 
-    transform: scale(1.0);
-    -webkit-transform: scale(1.0);
+  0%,
+  100% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
   }
 }

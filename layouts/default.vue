@@ -1,11 +1,11 @@
 <template>
   <div>
-    <Audio />
+    <iframe class="elasticman"> </iframe>
+
     <MagicCursor
       @cursor-loading="cursorLoading"
       @add-event-to-els="addEventToEls"
     />
-    <Menu @cursor-loading="cursorLoading" />
     <Guide />
     <Header />
     <MainPage @cursor-loading="cursorLoading" />
@@ -22,7 +22,6 @@ import BezierEasing from "bezier-easing/dist/bezier-easing.min";
   Импорт компонентов - Import components
 ---------------------------------------------------*/
 import MagicCursor from "@/components/MagicCursor";
-import Menu from "@/components/Menu";
 import Guide from "@/components/Guide";
 import Header from "@/components/Header";
 import MainPage from "@/components/MainPage";
@@ -31,172 +30,81 @@ import Footer from "@/components/Footer";
 export default {
   components: {
     MagicCursor,
-    Menu,
     Header,
     MainPage,
     Footer,
     Guide,
   },
   computed: mapGetters({
-    worksMode: "worksMode",
-    volume: "volume",
     windowSize: "windowSize",
   }),
   mounted() {
     const T = this;
 
+    let width = window.innerWidth;
+    T.$store.commit("getWindowSize", { width: width });
+
     T.initCursorHover();
 
-    setTimeout(function () {
-      T.$store.commit("changeAppLoaded", { val: 1 });
-    }, 2000);
-
-    /*--------------------------------------------------
-      Работа с главным меню (PC) - Work with main menu (PC)
-    ---------------------------------------------------*/
-
-    document.querySelector(".ring-btn").addEventListener("click", () => {
-      if (menu.menuOpened === true) {
-        menu.closeMenu();
-        menu.sectionScaleUp();
-      } else {
-        menu.openMenu();
-        menu.sectionScaleDown();
-      }
-    });
-
-    /*--------------------------------------------------
-      Настройка отображения пунктов меню
-    ---------------------------------------------------*/
-    setTimeout(animateActiveNav(), 1000);
-
-    function animateActiveNav() {
-      let elements = document.querySelectorAll(".right-side-nav .link");
-      elements.forEach(function (x) {
-        x.style.color = "#777";
-        x.style.opacity = ".45";
+    document.querySelector(".close-btn").addEventListener("click", (event) => {
+      document.querySelector("header").removeAttribute("about-contact");
+      TweenMax.to(".text-lower-main", 0.5, {
+        transform: "translateY(100px)",
       });
-      elements = document.querySelectorAll(".right-side-nav .nuxt-link-active");
-      elements.forEach(function (x) {
-        x.style.color = "white";
-        x.style.opacity = "1";
-      });
-
-      elements = document.querySelectorAll(".right-side-nav .nuxt-link-active");
-      elements.forEach(function (x) {
-        let children = x.closest(".right-side-nav").querySelectorAll(".link"),
-          amountEls = children.length,
-          index = Array.from(document.querySelectorAll(".link")).indexOf(x),
-          curEl = parseInt(`${index}`) + 1,
-          percent = (100 / amountEls) * curEl,
-          line = document.querySelector(".right-side-nav .line");
-        line.style.height = percent + "%";
-      });
-    }
-
-    elements = document.querySelectorAll(".right-side-nav .link");
-    elements.forEach(function (x) {
-      x.addEventListener("click", function () {
-        let location = document
-            .querySelector("section")
-            .getAttribute("location"),
-          goto = this.getAttribute("goto");
-        menu.togglePage(location, goto);
+      TweenMax.to(".home", 0.1, {
+        opacity: 1,
+        overflow: "visible",
+        filter: "blur(" + 0 + "px)",
+        pointerEvents: "all",
       });
     });
+    T.addEventToEls(
+      "footer .flexRow:nth-last-child(1) .magic-parallax, .header__toggle-el_about-contact, .close-btn",
+      "click",
+      function (event) {
+        var ifr = document.querySelector(".elasticman");
+        if (
+          event.target.classList.contains("header__toggle-el_about-contact") ||
+          (event.target.classList.contains("close-btn") && ifr.src == "")
+        )
+          return 0;
 
-    let elements = document.querySelectorAll(".right-side-nav .link");
-    elements.forEach(function (x) {
-      x.addEventListener("mouseenter", function () {
-        elements = document.querySelectorAll(".link");
-        elements.forEach(function (x) {
-          x.style.color = "#777";
-          x.style.opacity = ".45";
-        });
-        x.style.color = "white";
-        x.style.opacity = "1";
-        let children = x.closest(".right-side-nav").querySelectorAll(".link"),
-          amountEls = children.length,
-          index = Array.from(document.querySelectorAll(".link")).indexOf(x),
-          curEl = parseInt(`${index}`) + 1,
-          percent = (100 / amountEls) * curEl,
-          line = document.querySelector(".right-side-nav .line");
-        line.style.height = percent + "%";
-      });
-    });
-
-    elements = document.querySelectorAll(".right-side-nav .link");
-    elements.forEach(function (x) {
-      x.addEventListener("mouseleave", function () {
-        elements = document.querySelectorAll(".right-side-nav .link");
-        elements.forEach(function (x) {
-          x.style.color = "#777";
-          x.style.opacity = ".45";
-        });
-
-        elements = document.querySelectorAll(
-          ".right-side-nav .nuxt-link-exact-active"
-        );
-        elements.forEach(function (x) {
-          x.style.color = "white";
-          x.style.opacity = "1";
-        });
-
-        let children = document.querySelectorAll(".right-side-nav .link"),
-          amountEls = children.length,
-          index = Array.from(document.querySelectorAll(".link")).indexOf(
-            document.querySelector(".right-side-nav .nuxt-link-exact-active")
-          ),
-          curEl = parseInt(`${index}`) + 1,
-          percent = (100 / amountEls) * curEl,
-          line = document.querySelector(".right-side-nav .line");
-        line.style.height = percent + "%";
-      });
-    });
-
-    document
-      .querySelector(".close-about-contact-btn")
-      .addEventListener("click", () => {
-        if (T.$store.getters.windowSize === "PC") {
-          animateActiveNav();
-          TweenMax.to(".avatar-wrapper, .contact-form__flexCol", 0.4, {
-            css: { marginTop: 150 },
-          });
-          TweenMax.to(
-            ".contact-form__input-wrapper, .contact-form__button-socials",
-            0.4,
-            {
-              css: { marginTop: -55 },
-            }
-          );
-          TweenMax.to(".contact-form-container", 0.4, {
-            backgroundColor: "rgba(0,0,0,0)",
-          });
-          TweenMax.to(".contact-form-container", 1, {
-            css: { pointerEvents: "none" },
-            delay: 1,
-          });
-          document.querySelector("header").removeAttribute("about-contact");
-
-          menu.sectionScaleDown();
-          setTimeout(function () {
-            menu.openMenu();
-          }, 100);
-        } else {
-          document.querySelector("header").removeAttribute("about-contact");
+        if (ifr.src != "") {
+          ifr.removeAttribute("src");
+          ifr.style.opacity = "0";
+          ifr.style.pointerEvents = "none";
+          document.getElementById("magic-cursor").classList.remove("disactive");
+          document.querySelector("footer").classList.remove("davidli");
+          document.querySelector("header").classList.toggle("elasticm");
+          document.querySelector("footer").classList.toggle("elasticm");
           document
-            .querySelector(".contact-form-container")
-            .removeAttribute("active");
-        }
+            .querySelector("header")
+            .classList.toggle("elasticm-show-close");
 
-        if (!document.querySelector(".about-section")) return 0;
-        TweenMax.to(".about-section", 0.5, {
-          css: { opacity: 0 },
-        });
-        TweenMax.set(".about-section", {
-          pointerEvents: "none",
-        });
-      });
+          TweenMax.to(".home", 0.3, {
+            opacity: 1,
+          });
+        } else {
+          TweenMax.to(".home", 0.3, {
+            opacity: 0,
+          });
+          document.querySelector("header").classList.toggle("elasticm");
+          document.querySelector("footer").classList.add("davidli");
+          setTimeout(function () {
+            ifr.style.opacity = "1";
+            ifr.src =
+              "https://d21u3ic0kp9e91.cloudfront.net/elasticman/0/index.html";
+            document.getElementById("magic-cursor").classList.add("disactive");
+            ifr.style.pointerEvents = "all";
+          }, 300);
+          setTimeout(function () {
+            document
+              .querySelector("header")
+              .classList.toggle("elasticm-show-close");
+          }, 3000);
+        }
+      }
+    );
   },
   methods: {
     /*--------------------------------------------------
@@ -230,50 +138,46 @@ export default {
     },
 
     initCursorHover() {
-      setTimeout(() => {
-        let elements;
-        elements = document.querySelectorAll(".hide-ball");
-        elements.forEach(function (x) {
-          x.addEventListener("mouseenter", function () {
-            TweenMax.to("#ball", 0.15, {
-              borderWidth: "1px",
-              scale: 2,
-              opacity: 0,
-            });
-          });
-          x.addEventListener("mouseleave", function () {
-            TweenMax.to("#ball", 0.25, {
-              borderWidth: "2px",
-              scale: 1,
-              opacity: 1,
-            });
+      let elements;
+      elements = document.querySelectorAll(".hide-ball");
+      elements.forEach(function (x) {
+        x.addEventListener("mouseenter", function () {
+          TweenMax.to("#ball", 0.15, {
+            borderWidth: "1px",
+            scale: 2,
+            opacity: 0,
           });
         });
-        elements = document.querySelectorAll(".link, .mouseScale");
-        elements.forEach(function (x) {
-          x.addEventListener("mouseenter", function () {
-            TweenMax.to("#ball", 0.2, {
-              borderWidth: "0px",
-              scale: 3,
-              backgroundColor: "rgba(127, 127, 127, 1)",
-              opacity: 0.15,
-            });
-          });
-          x.addEventListener("mouseleave", function () {
-            TweenMax.to("#ball", 0.3, {
-              borderWidth: "2px",
-              scale: 1,
-              backgroundColor: "rgba(127, 127, 127, 0)",
-              opacity: 1,
-            });
+        x.addEventListener("mouseleave", function () {
+          TweenMax.to("#ball", 0.25, {
+            borderWidth: "2px",
+            scale: 1,
+            opacity: 1,
           });
         });
-      }, 1000);
+      });
+      elements = document.querySelectorAll(".link, .mouseScale");
+      elements.forEach(function (x) {
+        x.addEventListener("mouseenter", function () {
+          TweenMax.to("#ball", 0.2, {
+            borderWidth: "0px",
+            scale: 3,
+            backgroundColor: "rgba(127, 127, 127, 1)",
+            opacity: 0.15,
+          });
+        });
+        x.addEventListener("mouseleave", function () {
+          TweenMax.to("#ball", 0.3, {
+            borderWidth: "2px",
+            scale: 1,
+            backgroundColor: "rgba(127, 127, 127, 0)",
+            opacity: 1,
+          });
+        });
+      });
     },
   },
-  updated() {
-    menu.openMenu();
-  },
+  updated() {},
   created() {
     const T = this;
 

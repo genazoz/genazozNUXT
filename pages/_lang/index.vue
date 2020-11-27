@@ -1,5 +1,7 @@
 <template></template>
 <script>
+import BezierEasing from "bezier-easing/dist/bezier-easing.min";
+
 export default {
   name: "home",
   data: function () {
@@ -10,6 +12,19 @@ export default {
   props: [],
   mounted() {
     const T = this;
+
+    TweenMax.to(".M-project", 0.1, {
+      y: "100%",
+      ease: new Ease(BezierEasing(0.77, 0, 0.175, 1)),
+    });
+    TweenMax.to("header", 0.1, {
+      opacity: 1,
+      pointerEvents: "all",
+    });
+    TweenMax.to(".home", 0.1, {
+      opacity: 1,
+      pointerEvents: "all",
+    });
 
     /*--------------------------------------------------
         Анимация загрузки страницы

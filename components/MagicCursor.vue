@@ -1,5 +1,5 @@
 <template>
-  <div id="magic-cursor" class="light-content">
+  <div id="magic-cursor">
     <div id="ball">
       <svg
         class="before"
@@ -89,9 +89,6 @@ import { mapMutations, mapGetters } from "vuex";
 
 export default {
   computed: mapGetters({
-    worksMode: "worksMode",
-    volume: "volume",
-    lang: "lang",
     windowSize: "windowSize",
   }),
   mounted() {
@@ -140,16 +137,14 @@ export default {
       });
     });
 
-    setTimeout(function () {
-      if (T.$store.getters.windowSize === "PC") {
-        if (
-          document
-            .querySelector("#magic-cursor")
-            .classList.contains("show-loader")
-        )
-          T.$emit("cursor-loading");
-      }
-    }, 1000);
+    if (T.$store.getters.windowSize === "PC") {
+      if (
+        document
+          .querySelector("#magic-cursor")
+          .classList.contains("show-loader")
+      )
+        T.$emit("cursor-loading");
+    }
 
     var n = 0.5,
       o = !1,
@@ -179,73 +174,86 @@ export default {
           y: T.$store.state.t.y,
         }));
     });
-
-    T.$emit("add-event-to-els", ".magic-parallax", "mouseenter", function (e) {
-      TweenMax.to(this, 0.3, {
-        scale: 2,
-      });
-      TweenMax.to(cursorBall, 0.3, {
-        scale: 2,
-        borderWidth: "1px",
-        opacity: 0.2,
-      });
-      TweenMax.to(e.target.querySelector("svg"), 0.3, {
-        scale: 0.6,
-      });
-      o = !0;
-    });
-
-    T.$emit("add-event-to-els", ".magic-parallax", "mouseleave", function (e) {
-      TweenMax.to(this, 0.3, {
-        scale: 1,
-      });
-      TweenMax.to(cursorBall, 0.3, {
-        scale: 1,
-        borderWidth: "2px",
-        opacity: 1,
-      });
-      TweenMax.to(e.target.querySelector("svg"), 0.3, {
-        scale: 1,
-        x: 0,
-        y: 0,
-      });
-      TweenMax.to(e.target.querySelector(".icon"), 0.3, {
-        scale: 1,
-        x: 0,
-        y: 0,
-      });
-      o = !1;
-    });
-
-    T.$emit("add-event-to-els", ".magic-parallax", "mousemove", function (e) {
-      let n, o, i, l, r, d, c, s, p, h, x, u, w, f, m;
-      (n = e),
-        (o = 2),
-        (i = this.getBoundingClientRect()),
-        (l = n.pageX - i.left),
-        (r = n.pageY - i.top),
-        (d = window.pageYOffset || document.documentElement.scrollTop),
-        T.$store.commit("changeT", {
-          x: i.left + i.width / 2 + (l - i.width / 2) / o,
-          y: i.top + i.height / 2 + (r - i.height / 2 - d) / o,
-        }),
-        TweenMax.to(cursorBall, 0.3, {
-          x: T.$store.state.t.x,
-          y: T.$store.state.t.y,
-        }),
-        (s = e),
-        (p = c = this),
-        (h = c.querySelectorAll(".icon")),
-        (x = 20),
-        (u = p.getBoundingClientRect()),
-        (w = s.pageX - u.left),
-        (f = s.pageY - u.top),
-        (m = window.pageYOffset || document.documentElement.scrollTop),
-        TweenMax.to(h, 0.3, {
-          x: ((w - u.width / 2) / u.width) * x,
-          y: ((f - u.height / 2 - m) / u.height) * x,
-          ease: Power2.easeOut,
+    setTimeout(function () {
+      T.$emit("add-event-to-els", ".magic-parallax", "mouseenter", function (
+        e
+      ) {
+        TweenMax.to(this, 0.3, {
+          scale: 2,
         });
+        TweenMax.to(cursorBall, 0.3, {
+          scale: 2,
+          borderWidth: "1px",
+          opacity: 0.7,
+        });
+        TweenMax.to(
+          e.target.querySelector(".magic-parallax__scale-unset"),
+          0.3,
+          {
+            scale: 0.5,
+          }
+        );
+        o = !0;
+      });
+
+      T.$emit("add-event-to-els", ".magic-parallax", "mouseleave", function (
+        e
+      ) {
+        TweenMax.to(this, 0.3, {
+          scale: 1,
+        });
+        TweenMax.to(cursorBall, 0.3, {
+          scale: 1,
+          borderWidth: "2px",
+          opacity: 1,
+        });
+        TweenMax.to(
+          e.target.querySelector(".magic-parallax__scale-unset"),
+          0.3,
+          {
+            scale: 1,
+            x: 0,
+            y: 0,
+          }
+        );
+        TweenMax.to(e.target.querySelector(".icon"), 0.3, {
+          scale: 1,
+          x: 0,
+          y: 0,
+        });
+        o = !1;
+      });
+
+      T.$emit("add-event-to-els", ".magic-parallax", "mousemove", function (e) {
+        let n, o, i, l, r, d, c, s, p, h, x, u, w, f, m;
+        (n = e),
+          (o = 2),
+          (i = this.getBoundingClientRect()),
+          (l = n.pageX - i.left),
+          (r = n.pageY - i.top),
+          (d = window.pageYOffset || document.documentElement.scrollTop),
+          T.$store.commit("changeT", {
+            x: i.left + i.width / 2 + (l - i.width / 2) / o,
+            y: i.top + i.height / 2 + (r - i.height / 2 - d) / o,
+          }),
+          TweenMax.to(cursorBall, 0.3, {
+            x: T.$store.state.t.x,
+            y: T.$store.state.t.y,
+          }),
+          (s = e),
+          (p = c = this),
+          (h = c.querySelectorAll(".icon")),
+          (x = 20),
+          (u = p.getBoundingClientRect()),
+          (w = s.pageX - u.left),
+          (f = s.pageY - u.top),
+          (m = window.pageYOffset || document.documentElement.scrollTop),
+          TweenMax.to(h, 0.3, {
+            x: ((w - u.width / 2) / u.width) * x,
+            y: ((f - u.height / 2 - m) / u.height) * x,
+            ease: Power2.easeOut,
+          });
+      });
     });
   },
 };

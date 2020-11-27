@@ -15,26 +15,30 @@
               <span class="white-space-pre">{{ $t("home.titleMobile") }}</span>
             </h1>
             <p>{{ $t("home.text") }}</p>
-
-            <nuxt-link to="/contact" class="hide-ball" btnSoundOn>
-              {{ $t("home.button") }}
-            </nuxt-link>
           </div>
         </div>
       </div>
-      <div v-for="item in projects" :key="item.name" class="swiper-slide">
+      <!-- 
+        :to="$i18n.path('project')"
+
+       -->
+      <nuxt-link
+        :to="localePath('/project/' + item.src)"
+        v-for="item in $store.state.allProjects"
+        :key="item.name"
+        class="swiper-slide"
+      >
         <img
-          class="background parallax-bg"
-          data-swiper-parallax="9%"
-          :src="
-            require(`~/assets/img/projects/desktop/gridmode/${item.img_list}.webp`)
-          "
+          class="background"
+          :src="require(`~/assets/img/projects/${item.src}.webp`)"
         />
+
         <div class="swiper-slide__lower-info">
           <h5>{{ item.name }}</h5>
-          <p>{{ item.description }}</p>
+          <p v-if="$i18n.locale == 'ru'">{{ item.RUdescription }}</p>
+          <p v-if="$i18n.locale == 'en'">{{ item.ENdescription }}</p>
         </div>
-      </div>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -45,19 +49,31 @@ import firebase from "firebase/app";
 export default {
   name: "swiper-slider",
   async fetch() {
+    const T = this;
     const projects =
       (await firebase.database().ref(`/projects`).once("value")).val() || {};
-    this.projects = Object.keys(projects).map((key) => ({
-      ...projects[key],
-      id: key,
-    }));
+    T.setProjects(
+      Object.keys(projects).map((key) => ({
+        ...projects[key],
+        id: key,
+      }))
+    );
   },
   fetchOnServer: true,
   data() {
     return {
-      projects: [],
       visible: 1,
     };
+  },
+  mounted() {
+    const T = this;
+  },
+  methods: {
+    setProjects(name) {
+      this.$store.commit("setProjects", {
+        projects: name,
+      });
+    },
   },
 };
 </script>

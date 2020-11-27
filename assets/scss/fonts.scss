@@ -1,10 +1,4 @@
 @font-face {
-  font-family: "TTBluescreens-Bold";
-  src: url("../fonts/TTBluescreens-Bold.ttf");
-  font-style: normal;
-  font-weight: normal;
-}
-@font-face {
   font-family: "Chub Gothic";
   src: url("../fonts/Chubgothic.ttf");
   font-style: normal;
@@ -12,67 +6,19 @@
 }
 @font-face {
   font-family: "SFProDisplay";
-  src: url("../fonts/SFProDisplay-Ultralight.ttf");
-  font-style: normal;
-  font-weight: 100;
-}
-@font-face {
-  font-family: "SFProDisplay";
-  src: url("../fonts/SFProDisplay-Thin.ttf");
-  font-style: normal;
-  font-weight: 200;
-}
-@font-face {
-  font-family: "SFProDisplay";
-  src: url("../fonts/SFProDisplay-Light.ttf");
-  font-style: normal;
-  font-weight: 300;
-}
-@font-face {
-  font-family: "SFProDisplay";
-  src: url("../fonts/SFProDisplay-Regular.ttf");
+  src: url("../fonts/SFProDisplay-Regular.woff2");
   font-style: normal;
   font-weight: 400;
 }
 @font-face {
   font-family: "SFProDisplay";
-  src: url("../fonts/SFProDisplay-Medium.ttf");
-  font-style: normal;
-  font-weight: 500;
-}
-@font-face {
-  font-family: "SFProDisplay";
-  src: url("../fonts/SFProDisplay-Bold.ttf");
+  src: url("../fonts/SFProDisplay-Bold.woff2");
   font-style: normal;
   font-weight: 700;
 }
 @font-face {
-  font-family: "SFProDisplay";
-  src: url("../fonts/SFProDisplay-Heavy.woff");
-  font-style: normal;
-  font-weight: 800;
-}
-@font-face {
   font-family: "SFProText";
-  src: url("../fonts/SF-UI-Text-Light.ttf");
-  font-style: normal;
-  font-weight: 200;
-}
-@font-face {
-  font-family: "SFProText";
-  src: url("../fonts/SF-UI-Text-Regular.ttf");
+  src: url("../fonts/SFUIText-Regular.woff2");
   font-style: normal;
   font-weight: 400;
-}
-@font-face {
-  font-family: "SFProText";
-  src: url("../fonts/SF-UI-Text-Semibold.ttf");
-  font-style: normal;
-  font-weight: 500;
-}
-@font-face {
-  font-family: "SFProText";
-  src: url("../fonts/SF-UI-Text-Medium.ttf");
-  font-style: normal;
-  font-weight: 600;
 }

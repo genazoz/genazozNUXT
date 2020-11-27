@@ -20,7 +20,6 @@ class interactiveGuide {
         t.tipMode = null;
         t.tipDiv = null;
         t.before = null;
-        t.menu = null;
         t.titleWpr = null;
         t.titleTxt = null;
         t.circleTop = null;
@@ -28,7 +27,6 @@ class interactiveGuide {
         t.prevBtn = null;
         t.nextBtn = null;
         t.speed = null;
-        t.menu = null;
         t.projectsMode = null;
     }
 
@@ -43,7 +41,6 @@ class interactiveGuide {
         t.tipDiv = document.querySelector(".guide-tip");
         t.before = document.querySelector(".guide-cover .before");
         t.tips = document.querySelectorAll("[tip__position]");
-        t.menu = menu;
         let results = document.cookie.match("(^|;) ?worksMode=([^;]*)(;|$)");
         if(results){
             t.projectsMode = results[2];
@@ -81,43 +78,44 @@ class interactiveGuide {
 
     removeUnTips() {
         let t = this;
-        t.tips.forEach(function (x) {
-            let num = parseInt(x.getAttribute("tip__position"));
-            let contactPage = document.querySelector(".contact-form-container"),
-                aboutPage = document.querySelector(".about-section");
-            switch (num) {
-                case 1:
-                case 4:
-                    if (aboutPage || contactPage) {
-                        removeFromTipsway(x);
-                    } else {
-                        addToTipsway(x);
-                    }
-                break;
-                case 5:
-                case 6:
-                    if (aboutPage || contactPage || t.menu.scaled === false) {
-                        removeFromTipsway(x);
-                    }
-                    else {
-                        addToTipsway(x);
-                    }
-                break;
-                case 9:
-                if (t.menu.scaled === true || contactPage || aboutPage) {
-                    removeFromTipsway(x);
-                } else if (x.getAttribute("tip__hidden")) {
-                    addToTipsway(x);
-                }
-                break;
-            }
-            function removeFromTipsway(x) {
-                x.setAttribute("tip__hidden", "hidden");
-            }
-            function addToTipsway(x) {
-                if (x.getAttribute("tip__hidden")) x.removeAttribute("tip__hidden");
-            }   
-        });
+
+        // t.tips.forEach(function (x) {
+        //     let num = parseInt(x.getAttribute("tip__position"));
+        //     let contactPage = document.querySelector(".contact-form-container"),
+        //         aboutPage = document.querySelector(".about-section");
+        //     switch (num) {
+        //         case 1:
+        //         case 4:
+        //             if (aboutPage || contactPage) {
+        //                 removeFromTipsway(x);
+        //             } else {
+        //                 addToTipsway(x);
+        //             }
+        //         break;
+        //         case 5:
+        //         case 6:
+        //             if (aboutPage || contactPage) {
+        //                 removeFromTipsway(x);
+        //             }
+        //             else {
+        //                 addToTipsway(x);
+        //             }
+        //         break;
+        //         case 9:
+        //         if (contactPage || aboutPage) {
+        //             removeFromTipsway(x);
+        //         } else if (x.getAttribute("tip__hidden")) {
+        //             addToTipsway(x);
+        //         }
+        //         break;
+        //     }
+        //     function removeFromTipsway(x) {
+        //         x.setAttribute("tip__hidden", "hidden");
+        //     }
+        //     function addToTipsway(x) {
+        //         if (x.getAttribute("tip__hidden")) x.removeAttribute("tip__hidden");
+        //     }   
+        // });
 
         t.tipsAmount = document.querySelectorAll(
         "[tip__position]:not([tip__hidden = 'hidden'])"

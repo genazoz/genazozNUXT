@@ -15,6 +15,7 @@
     "firebase": "^8.0.1",
     "node-sass": "^5.0.0",
     "nuxt": "^2.14.6",
+    "nuxt-i18n": "^6.15.4",
     "nuxt-lazy-load": "^1.2.4",
     "nuxt-sass-resources-loader": "^2.0.5",
     "sass-loader": "^10.0.5",

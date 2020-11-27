@@ -1,28 +1,30 @@
-@mixin backgroundCC(){
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+@mixin backgroundCC() {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-@mixin wrapper(){
-    max-width: 1920px;
+@mixin wrapper() {
+  max-width: 100%;
 }
 
-@mixin textClip(){
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+@mixin textClip() {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-@mixin flexCenter(){
-    display: flex;align-items: center;justify-content: center;
+@mixin flexCenter() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-@mixin textSize(){
-    font-size: $font-size*.9;
-    @include for-size(phone-only){
-        font-size: $font-size*1;
-    }
-    @include for-size(big-desktop-up){
-        font-size: $font-size*1.05;
-    }
-    @include for-size(full-hd){
-    font-size: $font-size*1.15;
-    }
+@mixin textSize() {
+  font-size: $font-size * 0.9;
+  @include for-size(phone-only) {
+    font-size: $font-size * 1;
+  }
+  @include for-size(big-desktop-up) {
+    font-size: $font-size * 1.05;
+  }
+  @include for-size(full-hd) {
+    font-size: $font-size * 1.15;
+  }
 }

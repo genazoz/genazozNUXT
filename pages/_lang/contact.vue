@@ -1,61 +1,7 @@
 <template>
-  <div class="contact-form-container">
-    <div class="contact-form">
-      <div class="contact-form__flexRow">
-        <div class="contact-form__flexCol">
-          <h1>{{ $t("contact.title") }}</h1>
-          <p id="loc" style="text-align: left">{{ $t("contact.text") }}</p>
-        </div>
-      </div>
-      <div class="contact-form__inputs">
-        <div class="flexRow">
-          <div class="contact-form__input-wrapper hide-ball">
-            <input type="text" placeholder="E-mail" required="" />
-          </div>
-          <div class="contact-form__button-socials hide-ball">
-            <div class="container">
-              <a href="" class="button" style="--duration: 3000">
-                <ul>
-                  <li>{{ $t("contact.buttonSend") }}</li>
-                  <li>{{ $t("contact.buttonSending") }}</li>
-                  <li>{{ $t("contact.buttonSended") }}</li>
-                </ul>
-                <div>
-                  <div class="before">
-                    <div class="line"></div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      version="1.1"
-                      id="Capa_1"
-                      fill="white"
-                      class="arrow-right"
-                      x="0px"
-                      y="0px"
-                      viewBox="0 0 256 256"
-                      xml:space="preserve"
-                    >
-                      <g>
-                        <g>
-                          <polygon
-                            points="79.093,0 48.907,30.187 146.72,128 48.907,225.813 79.093,256 207.093,128   "
-                          ></polygon>
-                        </g>
-                      </g>
-                    </svg>
-                  </div>
-                  <svg viewBox="0 0 24 24"></svg>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="contact-form__input-wrapper hide-ball">
-          <textarea placeholder="Сообщение" required=""></textarea>
-        </div>
-      </div>
-    </div>
-  </div>
+  <a class="gmail-href" href="mailto:genazozulua49@gmail.com"
+    >genazozulua49@gmail.com</a
+  >
 </template>
 
 <script>
@@ -68,129 +14,129 @@ module.exports = {
     /*--------------------------------------------------
         Анимация загрузки страницы
     ---------------------------------------------------*/
-    menu.closeMenu();
-    menu.sectionScaleDown();
-    document.querySelector("header").setAttribute("about-contact", "");
-    TweenMax.to(".contact-form-container", 0.5, {
-      css: { opacity: 1, pointerEvents: "all" },
-      delay: 1,
+
+    TweenMax.to(".text-lower-main", 0.5, {
+      transform: "translateY(0px)",
     });
-    TweenMax.to(
-      ".avatar-wrapper, .contact-form__flexCol, .contact-form__input-wrapper, .contact-form__button-socials",
-      0.4,
-      {
-        // css: { marginTop: 0 },
-        delay: 0.9,
-      }
-    );
-    setTimeout(function () {
-      document
-        .querySelector(".contact-form-container")
-        .setAttribute("active", "");
-    }, 400);
+    TweenMax.to(".home", 0.1, {
+      opacity: 0.65,
+      overflow: "hidden",
+      filter: "blur(" + 155 + "px)",
+      pointerEvents: "none",
+    });
+    document.querySelector("header").setAttribute("about-contact", "");
+    // TweenMax.to(".contact-form-container", 0.5, {
+    //   css: { opacity: 1, pointerEvents: "all" },
+    //   delay: 1,
+    // });
+    // setTimeout(function () {
+    //   document
+    //     .querySelector(".contact-form-container")
+    //     .setAttribute("active", "");
+    // }, 400);
 
     /*--------------------------------------------------
         Работа с формой связи - Inputs animation in contact form
     ---------------------------------------------------*/
-    elements = document.querySelectorAll(
-      ".contact-form__input-wrapper input, textarea"
-    );
-    elements.forEach(function (x) {
-      x.addEventListener("blur", function () {
-        if (!x.val()) {
-          let label = x.parent().find("label"),
-            inputTitle = x.parent().find(".contact-form__input-title");
-          TweenMax.to(inputTitle, 0.8, {
-            css: { color: "rgba(255,255,255,.35)" },
-          });
-          TweenMax.to(label, 0.8, { css: { width: "0%" } });
-        }
-      });
-    });
+    // elements = document.querySelectorAll(
+    //   ".contact-form__input-wrapper input, textarea"
+    // );
+    // elements.forEach(function (x) {
+    //   x.addEventListener("blur", function () {
+    //     if (!x.val()) {
+    //       let label = x.parent().find("label"),
+    //         inputTitle = x.parent().find(".contact-form__input-title");
+    //       TweenMax.to(inputTitle, 0.8, {
+    //         css: { color: "rgba(255,255,255,.35)" },
+    //       });
+    //       TweenMax.to(label, 0.8, { css: { width: "0%" } });
+    //     }
+    //   });
+    // });
 
-    elements = document.querySelectorAll(
-      ".contact-form__input-wrapper input,textarea"
-    );
-    elements.forEach(function (x) {
-      x.addEventListener("focus", function () {
-        let label = x.parent().find("label"),
-          inputTitle = x.parent().find(".contact-form__input-title");
-        TweenMax.to(inputTitle, 0.8, { css: { color: "white" } });
-        TweenMax.to(label, 0.8, { css: { width: "100%" } });
-      });
-    });
+    // elements = document.querySelectorAll(
+    //   ".contact-form__input-wrapper input,textarea"
+    // );
+    // elements.forEach(function (x) {
+    //   x.addEventListener("focus", function () {
+    //     let label = x.parent().find("label"),
+    //       inputTitle = x.parent().find(".contact-form__input-title");
+    //     TweenMax.to(inputTitle, 0.8, { css: { color: "white" } });
+    //     TweenMax.to(label, 0.8, { css: { width: "100%" } });
+    //   });
+    // });
 
-    setTimeout(function () {
-      if (
-        document
-          .querySelector("#magic-cursor")
-          .classList.contains("show-loader")
-      )
-        T.$emit("cursor-loading");
-    }, 900);
+    // setTimeout(function () {
+    //   if (
+    //     document
+    //       .querySelector("#magic-cursor")
+    //       .classList.contains("show-loader")
+    //   )
+    //     T.$emit("cursor-loading");
+    // }, 900);
 
-    document.querySelectorAll(".button").forEach((button) => {
-      let duration = 3000,
-        svg = button.querySelector("svg:not(.arrow-right)");
+    // document.querySelectorAll(".button").forEach((button) => {
+    //   let duration = 3000,
+    //     svg = button.querySelector("svg:not(.arrow-right)");
 
-      button.style.setProperty("--duration", duration);
+    //   button.style.setProperty("--duration", duration);
 
-      button.addEventListener("click", (e) => {
-        e.preventDefault();
+    //   button.addEventListener("click", (e) => {
+    //     e.preventDefault();
 
-        if (!button.classList.contains("loading")) {
-          button.classList.add("loading");
+    //     if (!button.classList.contains("loading")) {
+    //       button.classList.add("loading");
 
-          setTimeout(() => {
-            svg.innerHTML = getPath(0, 0, [
-              [3, 14],
-              [8, 19],
-              [21, 6],
-            ]);
-          }, duration / 2);
-        }
-      });
-    });
+    //       setTimeout(() => {
+    //         svg.innerHTML = getPath(0, 0, [
+    //           [3, 14],
+    //           [8, 19],
+    //           [21, 6],
+    //         ]);
+    //       }, duration / 2);
+    //     }
+    //   });
+    // });
 
-    function getPoint(point, i, a, smoothing) {
-      let cp = (current, previous, next, reverse) => {
-          let p = previous || current,
-            n = next || current,
-            o = {
-              length: Math.sqrt(
-                Math.pow(n[0] - p[0], 2) + Math.pow(n[1] - p[1], 2)
-              ),
-              angle: Math.atan2(n[1] - p[1], n[0] - p[0]),
-            },
-            angle = o.angle + (reverse ? Math.PI : 0),
-            length = o.length * smoothing;
-          return [
-            current[0] + Math.cos(angle) * length,
-            current[1] + Math.sin(angle) * length,
-          ];
-        },
-        cps = cp(a[i - 1], a[i - 2], point, false),
-        cpe = cp(point, a[i - 1], a[i + 1], true);
-      return `C ${cps[0]},${cps[1]} ${cpe[0]},${cpe[1]} ${point[0]},${point[1]}`;
-    }
+    // function getPoint(point, i, a, smoothing) {
+    //   let cp = (current, previous, next, reverse) => {
+    //       let p = previous || current,
+    //         n = next || current,
+    //         o = {
+    //           length: Math.sqrt(
+    //             Math.pow(n[0] - p[0], 2) + Math.pow(n[1] - p[1], 2)
+    //           ),
+    //           angle: Math.atan2(n[1] - p[1], n[0] - p[0]),
+    //         },
+    //         angle = o.angle + (reverse ? Math.PI : 0),
+    //         length = o.length * smoothing;
+    //       return [
+    //         current[0] + Math.cos(angle) * length,
+    //         current[1] + Math.sin(angle) * length,
+    //       ];
+    //     },
+    //     cps = cp(a[i - 1], a[i - 2], point, false),
+    //     cpe = cp(point, a[i - 1], a[i + 1], true);
+    //   return `C ${cps[0]},${cps[1]} ${cpe[0]},${cpe[1]} ${point[0]},${point[1]}`;
+    // }
 
-    function getPath(update, smoothing, pointsNew) {
-      let points = pointsNew
-          ? pointsNew
-          : [
-              [4, 12],
-              [12, update],
-              [20, 12],
-            ],
-        d = points.reduce(
-          (acc, point, i, a) =>
-            i === 0
-              ? `M ${point[0]},${point[1]}`
-              : `${acc} ${getPoint(point, i, a, smoothing)}`,
-          ""
-        );
-      return `<path d="${d}" />`;
-    }
+    // function getPath(update, smoothing, pointsNew) {
+    //   let points = pointsNew
+    //       ? pointsNew
+    //       : [
+    //           [4, 12],
+    //           [12, update],
+    //           [20, 12],
+    //         ],
+    //     d = points.reduce(
+    //       (acc, point, i, a) =>
+    //         i === 0
+    //           ? `M ${point[0]},${point[1]}`
+    //           : `${acc} ${getPoint(point, i, a, smoothing)}`,
+    //       ""
+    //     );
+    //   return `<path d="${d}" />`;
+    // }
     //   window.addEventListener("keyup", function (e) {
     //     if (e.key === "Enter") {
     //       checkForm();
