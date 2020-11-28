@@ -1,5 +1,93 @@
 <template>
   <section class="home" location="home" style="height: 100vh">
+    <div class="container-grid">
+      <div class="container-grid-vertical">
+        <div
+          style="height: 100vh; background-color: rgba(128, 128, 128, 0.2); width: 1px;"
+          class="vertical-line-grid"
+        ></div>
+        <div
+          style="height: 100vh; background-color: rgba(128, 128, 128, 0.2); width: 1px;"
+          class="vertical-line-grid"
+        ></div>
+        <div
+          style="height: 100vh; background-color: rgba(128, 128, 128, 0.2); width: 1px;"
+          class="vertical-line-grid"
+        ></div>
+        <div
+          style="height: 100vh; background-color: rgba(128, 128, 128, 0.2); width: 1px;"
+          class="vertical-line-grid"
+        ></div>
+        <div
+          style="height: 100vh; background-color: rgba(128, 128, 128, 0.2); width: 1px;"
+          class="vertical-line-grid"
+        ></div>
+        <div
+          style="height: 100vh; background-color: rgba(128, 128, 128, 0.2); width: 1px;"
+          class="vertical-line-grid"
+        ></div>
+        <div
+          style="height: 100vh; background-color: rgba(128, 128, 128, 0.2); width: 1px;"
+          class="vertical-line-grid"
+        ></div>
+        <div
+          style="height: 100vh; background-color: rgba(128, 128, 128, 0.2); width: 1px;"
+          class="vertical-line-grid"
+        ></div>
+        <div
+          style="height: 100vh; background-color: rgba(128, 128, 128, 0.2); width: 1px;"
+          class="vertical-line-grid"
+        ></div>
+        <div
+          style="height: 100vh; background-color: rgba(128, 128, 128, 0.2); width: 1px;"
+          class="vertical-line-grid"
+        ></div>
+        <div
+          style="height: 100vh; background-color: rgba(128, 128, 128, 0.2); width: 1px;"
+          class="vertical-line-grid"
+        ></div>
+        <div
+          style="height: 100vh; background-color: rgba(128, 128, 128, 0.2); width: 1px;"
+          class="vertical-line-grid"
+        ></div>
+        <div
+          style="height: 100vh; background-color: rgba(128, 128, 128, 0.2); width: 1px;"
+          class="vertical-line-grid"
+        ></div>
+      </div>
+      <div class="container-grid-horizontal">
+        <div class="horizontal-line-grid-top"></div>
+        <div
+          style="background-color: rgba(128, 128, 128, 0.2); width: 100%; height: 1px;"
+          class="horizontal-line-grid"
+        ></div>
+        <div
+          style="background-color: rgba(128, 128, 128, 0.2); width: 100%; height: 1px;"
+          class="horizontal-line-grid"
+        ></div>
+        <div
+          style="background-color: rgba(128, 128, 128, 0.2); width: 100%; height: 1px;"
+          class="horizontal-line-grid"
+        ></div>
+        <div
+          style="background-color: rgba(128, 128, 128, 0.2); width: 100%; height: 1px;"
+          class="horizontal-line-grid"
+        ></div>
+        <div
+          style="background-color: rgba(128, 128, 128, 0.2); width: 100%; height: 1px;"
+          class="horizontal-line-grid"
+        ></div>
+        <div
+          style="background-color: rgba(128, 128, 128, 0.2); width: 100%; height: 1px;"
+          class="horizontal-line-grid"
+        ></div>
+        <div
+          style="background-color: rgba(128, 128, 128, 0.2); width: 100%; height: 1px;"
+          class="horizontal-line-grid"
+        ></div>
+        <div class="horizontal-line-grid-bottom"></div>
+      </div>
+    </div>
     <SwiperSlider />
   </section>
 </template>
@@ -10,14 +98,14 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "mainPage",
-  data: function () {
+  data: function() {
     return {
-      curSlide: null,
+      curSlide: null
     };
   },
   components: { SwiperSlider },
   computed: mapGetters({
-    windowSize: "windowSize",
+    windowSize: "windowSize"
   }),
   methods: {},
   mounted() {
@@ -36,7 +124,7 @@ export default {
     //////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////
 
-    const breakpointChecker = function () {
+    const breakpointChecker = function() {
       // if small viewport
       if (breakpoint.matches === true) {
         // clean up old instances and inline styles when available
@@ -56,7 +144,7 @@ export default {
     //////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////
 
-    const enableSwiper = function () {
+    const enableSwiper = function() {
       swiper = new Swiper(".swiper-container", {
         direction: "horizontal",
         slidesPerView: "auto",
@@ -66,27 +154,27 @@ export default {
         keyboard: true,
         speed: 1100,
         scrollbar: {
-          el: ".swiper-scrollbar",
-        },
+          el: ".swiper-scrollbar"
+        }
       });
-      swiper.on("transitionStart", function () {
+      swiper.on("transitionStart", function() {
         TweenMax.set(".main-wrapper-home .swiper-slide", {
-          scale: 1,
+          scale: 1
         });
       });
-      swiper.on("touchStart", function (e) {
+      swiper.on("touchStart", function(e) {
         TweenMax.to(".main-wrapper-home .swiper-slide", 0.9, {
           scale: 1,
-          ease: new Ease(BezierEasing(0.77, 0, 0.175, 1)),
+          ease: new Ease(BezierEasing(0.77, 0, 0.175, 1))
         });
         TweenMax.to(".main-wrapper-home .swiper-slide .background", 0.8, {
           opacity: 1,
-          ease: new Ease(BezierEasing(0.77, 0, 0.175, 1)),
+          ease: new Ease(BezierEasing(0.77, 0, 0.175, 1))
         });
       });
-      swiper.on("touchEnd", function () {});
+      swiper.on("touchEnd", function() {});
 
-      swiper.on("touchMove", function (e) {
+      swiper.on("touchMove", function(e) {
         let ball = document.querySelector("#magic-cursor");
 
         ball.classList.add("touch");
@@ -109,6 +197,6 @@ export default {
     T.$nuxt.$on("check-grid-pos", () => {
       T.checkGridPos();
     });
-  },
+  }
 };
 </script>

@@ -6,7 +6,6 @@
       @cursor-loading="cursorLoading"
       @add-event-to-els="addEventToEls"
     />
-    <Guide />
     <Header />
     <MainPage @cursor-loading="cursorLoading" />
     <nuxt />
@@ -22,7 +21,6 @@ import BezierEasing from "bezier-easing/dist/bezier-easing.min";
   Импорт компонентов - Import components
 ---------------------------------------------------*/
 import MagicCursor from "@/components/MagicCursor";
-import Guide from "@/components/Guide";
 import Header from "@/components/Header";
 import MainPage from "@/components/MainPage";
 import Footer from "@/components/Footer";
@@ -33,7 +31,6 @@ export default {
     Header,
     MainPage,
     Footer,
-    Guide,
   },
   computed: mapGetters({
     windowSize: "windowSize",

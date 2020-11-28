@@ -244,7 +244,6 @@ header {
       pointer-events: all !important;
     }
   }
-
   &:before {
     content: "";
     background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.4));
@@ -271,7 +270,6 @@ header {
       display: none;
     }
   }
-
   .magic-parallax {
     transition: 0.3s opacity;
 
@@ -293,7 +291,7 @@ header {
         font-size: 21px;
 
         @include for-size(big-desktop-up) {
-          font-size: 32px;
+          font-size: 28px;
         }
       }
     }
@@ -370,14 +368,13 @@ header {
   .magic-parallax {
     .icon-wrapper {
       &_question {
-        transition: 0.4s all;
         svg {
           opacity: 0.4;
           width: 14px;
           height: 14px;
           @include for-size(big-desktop-up) {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
           }
         }
         @include for-size(tablet-portrait-up) {
@@ -393,7 +390,7 @@ header {
           border-radius: 100px;
 
           @include for-size(big-desktop-up) {
-            font-size: 22px;
+            font-size: 18px;
           }
         }
       }
@@ -420,7 +417,6 @@ footer {
       pointer-events: none;
     }
   }
-
   .magic-parallax {
     transition: 0.3s opacity;
 
@@ -483,8 +479,8 @@ footer {
           height: 18px;
 
           @include for-size(big-desktop-up) {
-            width: $fullhd-FS-icons * 1.1;
-            height: $fullhd-FS-icons * 1.1;
+            width: $fullhd-FS-icons ;
+            height: $fullhd-FS-icons ;
           }
         }
       }

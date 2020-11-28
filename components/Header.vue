@@ -60,59 +60,6 @@
       </nuxt-link>
     </div>
     <div class="flexRow">
-      <div :class="{ 'magic-parallax': $store.state.windowSize === 'PC' }">
-        <div
-          class="icon-wrapper icon icon-wrapper_question"
-          tip__position="3"
-          tip__title="Подсказки"
-          tip__text="Нажав на эту кнопку, вы сможете увидеть подсказки еще раз"
-          btnSoundOn
-        >
-          <div class="magic-parallax__scale-unset">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              version="1.1"
-              x="0px"
-              y="0px"
-              fill="white"
-              width="13px"
-              height="13px"
-              viewBox="0 0 512 512"
-              style="enable-background: new 0 0 512 512"
-              xml:space="preserve"
-            >
-              <g>
-                <g>
-                  <circle cx="256" cy="478.609" r="33.391" />
-                </g>
-              </g>
-              <g>
-                <g>
-                  <path
-                    d="M256,0c-81.626,0-148.035,66.409-148.035,148.035h66.783c0-44.802,36.45-81.252,81.252-81.252s81.252,36.45,81.252,81.252    c0,21.703-8.452,42.108-23.798,57.453c-20.054,20.053-79.536,75.12-80.135,75.675l-10.711,9.913v120.751h66.783v-91.59    c18.43-17.132,55.505-51.747,71.285-67.525c27.961-27.96,43.359-65.135,43.359-104.676C404.035,66.409,337.627,0,256,0z"
-                  />
-                </g>
-              </g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-            </svg>
-          </div>
-        </div>
-      </div>
       <div :class="{ 'magic-parallax': $store.state.windowSize == 'PC' }">
         <div
           class="icon-wrapper icon icon_language"
