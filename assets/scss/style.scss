@@ -49,11 +49,11 @@
 
       &:nth-child(1) {
         @include flexCenter;
-        width: 60vw;
+        width: 48vw;
         padding: 0;
 
         @include for-size(big-desktop-up) {
-          width: 1050px;
+          width: 900px;
         }
         @include for-size(tablet-portrait-up) {
           height: 450px;
@@ -105,7 +105,7 @@
             img[alt="memoji"] {
               border-radius: 100%;
               width: 100%;
-              border: 2px solid rgba(128, 128, 128, 0.2);
+              // border: 2px solid rgba(128, 128, 128, 0.2);
             }
             img[alt="emoji"] {
               position: absolute;
@@ -353,6 +353,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
+  display: none;
+
 
   .horizontal-line-grid-top {
     height: 1px;

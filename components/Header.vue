@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="flexRow">
-      <div :class="{ 'magic-parallax': $store.state.windowSize === 'PC' }">
+      <!-- <div :class="{ 'magic-parallax': $store.state.windowSize === 'PC' }">
         <div
           class="icon-wrapper icon icon-wrapper_logotip"
           tip__position="1"
@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="hide-ball header__toggle-el header__toggle-el_about-contact">
       <nuxt-link
