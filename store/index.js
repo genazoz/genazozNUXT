@@ -4,6 +4,7 @@ export const state = () => ({
   locale: "ru",
   windowSize: "PC",
   allProjects: null,
+  categories: null,
   project: null,
   e: {
     x: 0,
@@ -26,6 +27,10 @@ export const mutations = {
 
   setProjects(state, { projects }) {
     state.allProjects = projects;
+  },
+
+  setCategories(state, { categories }) {
+    state.categories = categories;
   },
 
   /*--------------------------------------------------
@@ -80,3 +85,6 @@ export const getters = {
     return state.windowSize;
   }
 };
+
+
+

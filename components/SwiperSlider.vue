@@ -1,12 +1,14 @@
 <template>
   <div class="swiper-container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide">
+      <div class="swiper-slide swiper-slide-info">
         <div class="father-info">
+          <img class="father-info__crown" src="~/assets/img/crown.gif">
           <div class="father-info__img-wrapper">
             <img src="~/assets/img/memoji.png" alt="memoji" />
             <img src="~/assets/img/emoji.png" alt="emoji" />
           </div>
+          <span class="father-info__highlighted">@genazozulya</span>
           <div class="flexCol">
             <h1 class="title_desktop">
               <span class="white-space-pre">{{ $t("home.titleDesktop") }}</span>
@@ -60,14 +62,6 @@ export default {
     );
   },
   fetchOnServer: true,
-  data() {
-    return {
-      visible: 1,
-    };
-  },
-  mounted() {
-    const T = this;
-  },
   methods: {
     setProjects(name) {
       this.$store.commit("setProjects", {
@@ -77,4 +71,3 @@ export default {
   },
 };
 </script>
-

@@ -5,8 +5,8 @@ export default {
   },
   home: {
     ftitle: "Hi, I'm Gennady",
-    titleMobile: "Front-end \nTypeScript, NUXT",
-    titleDesktop: "Front-end developer \nTypeScript, VueJS, NUXT",
+    titleMobile: "Front-end dev \nVue, NUXT, SCSS",
+    titleDesktop: "Front-end developer \nVue.js, NUXT.js, SCSS",
     text: "Located in Saint-Petersburg. I am looking to take on more work.",
     button: "Order"
   },

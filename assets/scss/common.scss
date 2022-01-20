@@ -34,9 +34,6 @@
 * ::-webkit-scrollbar-thumb {
   background: white;
 }
-input[type="text"],
-textarea {
-}
 a {
   /* Позиционирование */
 
@@ -54,16 +51,8 @@ a {
 
   /* Адаптация */
 }
-
 .white-space-pre {
   white-space: pre;
-}
-.on-menu-active {
-  display: none !important;
-  opacity: 0;
-  &.active {
-    display: flex !important;
-  }
 }
 ul {
   list-style: none;
@@ -79,17 +68,10 @@ p {
     font-size: $fullhd-FS;
   }
 }
+a,
 button {
+  color: inherit;
   font-family: $font-family;
-}
-#grain {
-  position: fixed;
-  pointer-events: none;
-  z-index: 100;
-  width: 100vw;
-  height: 100%;
-  background: rgba(1, 1, 1, 0);
-  top: 0;
 }
 .elasticman {
   border: unset;
@@ -133,15 +115,15 @@ body {
 
   background: black;
 }
-
 body {
   margin: 0;
 
   font-family: $font-family;
 
   color: white;
-}
 
+  opacity: 0;
+}
 #app {
   /* Позиционирование */
 
@@ -159,15 +141,15 @@ body {
 
   /* Адаптация */
 }
-
 section {
   &.home {
     top: 0;
 
+    overflow-y: scroll;
     width: 100%;
     min-width: 320px;
 
-    transition: 1s filter, 1s transform;
+    transition: 1s filter, 1s transform, 0.4s opacity;
   }
 }
 
@@ -175,7 +157,8 @@ section {
 	01. Header/Footer
 ---------------------------------------------------*/
 header,
-footer {
+footer,
+.header_mobile {
   position: fixed;
   z-index: 21;
   left: 0;
@@ -184,6 +167,7 @@ footer {
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 120px;
   margin: 0 auto;
@@ -195,7 +179,7 @@ footer {
   }
 
   @include for-size(tablet-portrait-up) {
-    height: 100px;
+    height: 90px;
   }
 
   .hide-ball {
@@ -204,7 +188,39 @@ footer {
 
   @include wrapper();
   @include for-size(tablet-portrait-up) {
-    padding: 30px;
+    padding: 25px;
+  }
+}
+header,
+footer {
+  @include for-size(tablet-portrait-up) {
+    display: none;
+  }
+}
+.header_mobile {
+  display: none;
+  @include for-size(tablet-portrait-up) {
+    display: flex;
+  }
+  .lang-switcher {
+    @include flexCenter;
+  }
+  .flexRow {
+    &:nth-child(1) {
+      .icon-wrapper {
+        margin-right: 15px;
+      }
+    }
+  }
+  &:before {
+    content: "";
+    // background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.4));
+    width: 101%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 0;
   }
 }
 header {
@@ -216,37 +232,72 @@ header {
       top: -40px;
       filter: blur(10px);
       opacity: 0;
-      background: linear-gradient(
-        to top,
-        transparent,
-        transparent,
-        transparent,
-        rgba(0, 0, 0, 0.1),
-        rgba(0, 0, 0, 0.2),
-        rgba(0, 0, 0, 0.3),
-        rgba(0, 0, 0, 0.4),
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.6),
-        rgba(0, 0, 0, 0.7)
-      );
+      // background: linear-gradient(
+      //   to top,
+      //   transparent,
+      //   transparent,
+      //   transparent,
+      //   rgba(0, 0, 0, 0.1),
+      //   rgba(0, 0, 0, 0.2),
+      //   rgba(0, 0, 0, 0.3),
+      //   rgba(0, 0, 0, 0.4),
+      //   rgba(0, 0, 0, 0.5),
+      //   rgba(0, 0, 0, 0.6),
+      //   rgba(0, 0, 0, 0.7)
+      // );
     }
-    .header__toggle-el:not(.header__toggle-el_about-contact):not(.header__toggle-el_main-logotip),
     .magic-parallax {
       transition: 0.3s opacity;
       opacity: 0;
       position: absolute;
       pointer-events: none;
     }
+    .elastic-close-btn {
+      pointer-events: all;
+      opacity: 1;
+    }
   }
-  &.elasticm-show-close {
-    .header__toggle-el_about-contact {
-      display: flex;
-      pointer-events: all !important;
+  .elastic-close-btn {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 45px;
+    margin: auto;
+
+    @include flexCenter;
+    width: 70px;
+    height: 70px;
+    pointer-events: none;
+
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    opacity: 0;
+
+    transform: rotate(270deg);
+    transition: 0.4s all;
+
+    &:hover {
+      border-color: white;
+    }
+
+    svg {
+      position: absolute;
+
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+
+    .arrow-button__picto {
+      transform: rotate(-90deg);
     }
   }
   &:before {
     content: "";
-    background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.4));
+    // background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.4));
     width: 101%;
     height: 100%;
     top: 0;
@@ -254,20 +305,16 @@ header {
     position: absolute;
     z-index: 0;
   }
-  &[about-contact] {
-    .header__toggle-el_about-contact {
-      display: flex;
-      pointer-events: all !important;
-    }
-    .magic-parallax_contact {
-      opacity: 0;
-      pointer-events: none;
-      .icon-wrapper {
-        pointer-events: none;
+  .flexRow {
+    &:nth-child(1) {
+      .magic-parallax {
+        margin-left: -20px;
       }
     }
-    .header__toggle-el_main {
-      display: none;
+    &:nth-last-child(1) {
+      .magic-parallax {
+        margin-right: -20px;
+      }
     }
   }
   .magic-parallax {
@@ -278,94 +325,6 @@ header {
       width: 15px;
       height: 15px;
     }
-  }
-  .header__toggle-el_main-logotip {
-    .icon-wrapper_logotip {
-      @include for-size(tablet-portrait-up) {
-        margin-left: -9px;
-      }
-    }
-    a {
-      .genazozulya {
-        font-family: Chub Gothic;
-        font-size: 21px;
-
-        @include for-size(big-desktop-up) {
-          font-size: 28px;
-        }
-      }
-    }
-  }
-  .flexRow:nth-child(1) {
-    .magic-parallax {
-      margin-left: -20px;
-    }
-  }
-  .flexRow:nth-child(3) {
-    display: flex;
-    margin-left: auto;
-    align-items: center;
-    margin-right: -20px;
-
-    @include for-size(tablet-portrait-up) {
-      margin-right: -9px;
-      justify-content: flex-end;
-      width: max-content;
-      .icon-wrapper {
-        margin: 0;
-      }
-    }
-
-    .icon-wrapper {
-      background: transparent;
-    }
-
-    .magic-parallax {
-      margin-left: 10px;
-      @include for-size(big-desktop-up) {
-        margin-left: 40px;
-      }
-    }
-  }
-  .header__toggle-el_about-contact {
-    display: none;
-
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-
-    align-items: center;
-    margin-left: -20px;
-    width: $crclBtnWH;
-    height: $crclBtnWH;
-    z-index: 1;
-
-    font-size: 16px;
-
-    cursor: pointer;
-
-    .close-btn {
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      .arrow-button {
-        pointer-events: none;
-      }
-    }
-    .arrow-button--left {
-      pointer-events: none !important;
-    }
-    i {
-      cursor: pointer;
-    }
-    img {
-      margin-top: 4px;
-      width: 16px;
-      cursor: pointer;
-    }
-  }
-  .magic-parallax {
     .icon-wrapper {
       &_question {
         svg {
@@ -387,6 +346,8 @@ header {
           height: 100%;
           @include flexCenter;
 
+          font-size: 14px;
+
           border-radius: 100px;
 
           @include for-size(big-desktop-up) {
@@ -396,25 +357,34 @@ header {
       }
     }
   }
+  .lang-switcher {
+    @include for-size(tablet-portrait-up) {
+      @include flexCenter;
+    }
+  }
 }
 footer {
   bottom: 0;
   align-items: center;
   justify-content: space-between;
-  z-index: 11;
+  z-index: 22;
   position: fixed;
 
+  @include for-size(tablet-portrait-up) {
+    bottom: unset;
+    top: 0;
+  }
   &.davidli {
     .davidli {
       transform: translateY(0);
       pointer-events: all;
     }
-    .swiper-scrollbar {
+    .flexRow {
       opacity: 0;
-    }
-    .magic-parallax {
-      opacity: 0 !important;
       pointer-events: none;
+      * {
+        pointer-events: none;
+      }
     }
   }
   .magic-parallax {
@@ -429,13 +399,13 @@ footer {
   .davidli {
     position: absolute;
     bottom: 24px;
-    right: 0;
-    left: 0;
+    right: 44px;
     pointer-events: none;
 
     width: max-content;
     margin: auto;
 
+    font-size: 13px;
     font-weight: 400;
     text-align: center;
 
@@ -446,9 +416,15 @@ footer {
     &:hover {
       opacity: 1;
     }
+
+    @include for-size(tablet-portrait-up) {
+      display: none;
+    }
   }
   .flexRow {
     align-items: center;
+
+    transition: 0.4s opacity;
   }
   .flexRow:nth-child(1) {
     .magic-parallax {
@@ -456,11 +432,17 @@ footer {
         margin-right: 40px;
       }
     }
+    .icon-wrapper {
+      @include for-size(tablet-portrait-up) {
+        margin-right: 10px;
+      }
+    }
   }
   .flexRow:last-child {
     margin-right: -20px;
     @include for-size(tablet-portrait-up) {
       margin-right: -9px;
+      display: none;
     }
     .magic-parallax {
       opacity: 0.3;
@@ -479,247 +461,26 @@ footer {
           height: 18px;
 
           @include for-size(big-desktop-up) {
-            width: $fullhd-FS-icons ;
-            height: $fullhd-FS-icons ;
+            width: $fullhd-FS-icons;
+            height: $fullhd-FS-icons;
           }
         }
       }
     }
   }
-  img {
-    width: 55px;
-    margin-left: auto;
-    z-index: 1;
-    position: absolute;
-    right: 65px;
-    bottom: 45px;
-    pointer-events: all;
-  }
-  .text-lower-main {
-    position: absolute;
-    bottom: 24px;
-    right: 0;
-    left: 0;
-    pointer-events: none;
-
-    width: max-content;
-    margin: auto;
-
-    font-weight: 400;
-    text-align: center;
-
-    color: white;
-    opacity: 0.15;
-    transform: translateY(100px);
-
-    transition: 0.2s opacity;
-
-    &:hover {
-      opacity: 0.25;
-    }
-    span {
-      font-size: 10.5px;
-    }
-    p {
-      pointer-events: none;
-      font-size: 10.8px;
-    }
-  }
+}
+.arrow-button__picto {
+  position: absolute;
+  display: block;
+  width: 15px;
+  height: 9px;
+  stroke: currentColor;
+  stroke-width: 2px;
+  backface-visibility: hidden;
 }
 
 /*--------------------------------------------------
-02. Интерактивные подсказки - Interactive guide 
----------------------------------------------------*/
-.guide-cover {
-  position: fixed;
-  z-index: 30;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  pointer-events: none;
-  top: 0;
-  opacity: 0;
-  &:before {
-    content: "";
-    position: absolute;
-    width: 100vw;
-    height: 100%;
-    z-index: 1;
-  }
-  .before {
-    width: 110px;
-    height: 110px;
-    border-radius: 10000px;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1.5px solid transparent;
-    &[tip__mode="square"] {
-      border-radius: 4px;
-      .border {
-        border-radius: 0;
-      }
-    }
-    .border {
-      width: calc((100vw + 100%) * 2);
-      height: calc((100vw + 100%) * 2);
-      border-radius: calc((100vw + 100%) * 2);
-      border: calc(100vw + 100%) solid rgba(0, 0, 0, 0);
-      position: absolute;
-    }
-  }
-  .guide-tip {
-    position: fixed;
-    z-index: 2;
-    width: auto;
-    height: auto;
-    padding: 0px;
-    color: white;
-    .flexRow_title {
-      display: flex;
-      align-items: center;
-      padding-left: 1px;
-      position: relative;
-      width: max-content;
-    }
-    h3 {
-      font-size: 32px;
-      line-height: 1.07143;
-      font-weight: 400;
-      letter-spacing: -0.005em;
-      color: #ffdf02;
-      margin-left: -2px;
-      @include for-size(full-hd) {
-        font-size: 60px;
-      }
-    }
-    &__text {
-      max-width: 300px;
-      margin-right: auto;
-      margin-left: 0;
-      margin-top: 3px;
-      text-align: left;
-      color: #ccc;
-    }
-    &__count {
-      margin-top: 10px;
-      background: rgba(#ffdf02, 0.1);
-      color: #ffdf02;
-      width: max-content;
-      padding: 4px 9px;
-      font-size: 12px;
-      border-radius: 7px;
-    }
-    &__next-btn,
-    &__prev-btn {
-      padding: 10px 30px;
-      outline: none;
-      color: black;
-      border: 0;
-      background: #ffdf02;
-      color: black;
-      font-weight: 400;
-      margin: 0;
-      &.guide-tip__prev-btn {
-        display: none;
-        background: rgba(#ffdf02, 0.1);
-        color: #ffdf02;
-        &.active {
-          display: block;
-        }
-      }
-      &:hover {
-        opacity: 0.7;
-        cursor: pointer;
-      }
-    }
-    &__close-btn {
-      @include flexCenter;
-      right: -30px;
-      top: 0px;
-      fill: white;
-      width: 24px;
-      height: 24px;
-      background: rgba(#ffdf02, 0.1);
-      border-radius: 50%;
-      position: absolute;
-      padding: 0;
-      border-color: transparent;
-      outline: none;
-      cursor: pointer;
-      &:hover {
-        background: #ffdf02;
-        svg {
-          fill: black;
-          opacity: 1;
-        }
-      }
-      svg {
-        width: 8px;
-        height: 8px;
-        fill: #ffdf02;
-        opacity: 0.5;
-      }
-      &:hover {
-        opacity: 1;
-      }
-    }
-  }
-  .tip {
-    position: absolute;
-    width: 310px;
-    height: auto;
-    background: white;
-    top: -370%;
-    left: 130%;
-    padding: 15px;
-    border-radius: 7px;
-    background: rgba(30, 30, 30, 1);
-    opacity: 0;
-    font-size: $FS * 1.1;
-    .title {
-      color: white;
-      display: flex;
-      align-items: center;
-    }
-    svg {
-      margin-left: 7px;
-      font-size: $FS * 0.9;
-      margin-top: 2px;
-    }
-    p {
-      color: $gray;
-      margin-top: 5px;
-      margin-bottom: 5px;
-    }
-  }
-  .guide__flexRow_fixed {
-    position: fixed;
-    right: 65px;
-    bottom: 40px;
-    z-index: 3;
-
-    @include flexCenter;
-    width: max-content;
-    margin: auto;
-    height: auto;
-    padding: 0px;
-    color: white;
-    transition: 0.3s all;
-
-    .flexRow {
-      display: flex;
-      align-items: center;
-      .flexRow {
-        margin: 0;
-      }
-    }
-  }
-}
-
-/*--------------------------------------------------
-03. Magic Cursor
+02. Magic Cursor
 ---------------------------------------------------*/
 #magic-cursor {
   position: fixed;
@@ -901,6 +662,15 @@ footer {
     -webkit-transition: opacity 0.2s ease-in-out 0s;
     transition: opacity 0.2s ease-in-out 0s;
   }
+  .magic-cursor__highlight {
+    position: absolute;
+    width: 70px;
+    top: -80%;
+    left: -90%;
+
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 .magic-parallax {
   width: 60px;
@@ -943,119 +713,6 @@ footer {
   @include flexCenter;
 }
 
-a,
-button {
-  color: inherit;
-}
-button {
-  cursor: pointer;
-  background-color: transparent;
-  border: 0;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-  text-transform: inherit;
-  letter-spacing: inherit;
-}
-button:focus {
-  outline: none;
-}
-button:disabled {
-  cursor: default;
-}
-.arrow-button {
-  position: relative;
-  width: $crclBtnWH;
-  height: $crclBtnWH;
-}
-@media (min-width: 1440px) {
-  .arrow-button {
-    width: calc(3.125vw + 20px);
-  }
-}
-@media (min-width: 1920px) {
-  .arrow-button {
-    width: 80px;
-  }
-}
-@media (min-width: 1440px) {
-  .arrow-button {
-    height: calc(3.125vw + 20px);
-  }
-}
-@media (min-width: 1920px) {
-  .arrow-button {
-    height: 80px;
-  }
-}
-.arrow-button__border,
-.arrow-button__border svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.arrow-button__border svg {
-  stroke: currentColor;
-  fill: none;
-  backface-visibility: hidden;
-}
-.arrow-button__border svg:first-child {
-  opacity: 0.15;
-  @include for-size(tablet-portrait-up) {
-    opacity: 0;
-  }
-}
-.arrow-button__border svg:last-child {
-  stroke-dasharray: 207.34512px 207.34512px;
-  stroke-dashoffset: 207.34512px;
-  transform: rotate(-90deg);
-  &.disactive {
-    animation: arrow-button__border-out 1.5s cubic-bezier(0.77, 0, 0.175, 1);
-  }
-  &.active {
-    animation: arrow-button__border-over 1.5s cubic-bezier(0.77, 0, 0.175, 1)
-      forwards;
-  }
-}
-.arrow-button__picto {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: block;
-  width: 15px;
-  height: 9px;
-  stroke: currentColor;
-  stroke-width: 2px;
-  backface-visibility: hidden;
-  animation-duration: 1.2s;
-  animation-fill-mode: forwards;
-  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-}
-.arrow-button--down .arrow-button__picto {
-  transform: translate(-50%, -50%) rotate(90deg);
-  animation-name: arrow-button__picto-out-down;
-}
-html:not(.touch) .arrow-button--down:hover .arrow-button__picto {
-  animation-name: arrow-button__picto-over-down;
-}
-.arrow-button--right .arrow-button__picto {
-  transform: translate(-50%, -50%);
-  animation-name: arrow-button__picto-out-right;
-}
-html:not(.touch) .arrow-button--right:hover .arrow-button__picto {
-  animation-name: arrow-button__picto-over-right;
-}
-.arrow-button--left .arrow-button__picto {
-  transform: translate(-50%, -50%);
-  animation-name: arrow-button__picto-out-left;
-}
-html:not(.touch) .arrow-button--left:hover .arrow-button__picto {
-  animation-name: arrow-button__picto-over-left;
-}
-
 .M-project-wrapper {
   position: fixed;
   top: 0;
@@ -1064,47 +721,48 @@ html:not(.touch) .arrow-button--left:hover .arrow-button__picto {
 
   width: 100%;
   height: 100%;
+  padding: 135px 0;
 
-  background: rgba(0, 0, 0, 1);
+  background: rgba(0, 0, 0, .7);
   overflow-y: scroll;
 
-  transition: 0.6s all;
+  // transition: 0.6s all;
   margin-top: 100%;
   display: none;
 
   @include flexCenter;
-}
 
+  @include for-size(phone-only) {
+    padding: 0;
+  }
+}
 .M-project {
   position: relative;
 
+  overflow-y: auto;
+  width: 800px;
+  max-width: 80%;
+  height: max-content;
+  min-height: max-content;
   padding: 0;
   margin: auto;
-  width: 100%;
-  height: 100%;
-
-  min-height: max-content;
 
   font-family: SFProDisplay;
-  // border: 2px solid rgb(22, 22, 22);
 
-  @include for-size(big-desktop-up) {
-    // width: 1200px;
-    // height: 640px;
-  }
-  @media screen and (max-width: 1250px) {
-    // width: max-content;
-    // height: max-content;
-  }
-  @include for-size(tablet-portrait-up) {
+  background: #090c10;
+  border-radius: 30px;
+  box-shadow: #30363d 0px 0px 0px 2px;
+
+  @include for-size(phone-only) {
     width: 100%;
+    max-width: 100%;
     height: 100%;
     max-width: 100%;
     max-height: 100%;
-
     min-height: max-content;
+    border-radius: 0;
+    box-shadow: unset;
   }
-
   p {
     color: #828282;
     font-family: $font-family;
@@ -1112,19 +770,39 @@ html:not(.touch) .arrow-button--left:hover .arrow-button__picto {
   }
   &__close-btn-wrapper {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 11;
 
-    width: 65px;
-    height: 65px;
+    z-index: -1;
+    bottom: 0;
+    right: 0;
+
+    width: 100%;
+    height: 100%;
+
+    button {
+      display: none;
+    }
+
+    @include for-size(phone-only) {
+      z-index: 11;
+      top: 15px;
+      right: 20px;
+
+      width: 65px;
+      height: 65px;
+
+      button {
+        display: flex;
+      }
+    }
   }
   &__close-btn {
     @include flexCenter;
     width: 100%;
     height: 100%;
 
+    outline: none;
     border-radius: 50%;
+    background: transparent;
     border: 1.5px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
 
@@ -1133,16 +811,6 @@ html:not(.touch) .arrow-button--left:hover .arrow-button__picto {
 
     &:hover {
       border-color: white;
-    }
-
-    svg {
-      position: absolute;
-
-      margin: auto;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
     }
   }
   &__preview-img-wrapper {
@@ -1156,30 +824,28 @@ html:not(.touch) .arrow-button--left:hover .arrow-button__picto {
       height: auto;
     }
   }
-  &__preview-img {
-    width: 100%;
-  }
-  .img-design {
-    @include flexCenter;
-    height: 300px;
-    width: auto;
-    margin-top: 50px;
-    margin-right: 50px;
+  &__preview {
+    position: relative;
 
-    opacity: 0.5;
-
-    &:hover {
-      opacity: 1;
-    }
     img {
-      width: auto;
-      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
     }
   }
-  &__title {
-    color: white;
+  &__ovScroll {
+    position: relative;
+
+    overflow: scroll;
+    display: flex;
+    width: 100%;
+    height: 0;
+    padding-top: 52%;
+
+    border-radius: 12px;
   }
-  /* Дети */
   &__section {
     position: relative;
 
@@ -1199,192 +865,27 @@ html:not(.touch) .arrow-button--left:hover .arrow-button__picto {
 
         width: 100%;
         bottom: 0;
-        background: linear-gradient(to top, rgba(black, 1), transparent);
+        background: linear-gradient(to top, #090c10, transparent);
         height: 100%;
       }
     }
-
     &_info {
-      padding: 0px 40px 0px 80px;
-      height: auto;
       z-index: 2;
-      top: 0;
 
-      @media screen and (max-width: 1250px) {
-        padding: 20px 80px 0px 80px;
-      }
+      @include flexCenter;
+      flex-direction: column;
+      padding: 120px 88px 90px 88px;
+      height: 100%;
+
       @include for-size(tablet-portrait-up) {
-        padding: 0px 40px 0px 40px;
-      }
-
-      .M-project__flexCol-info {
-        margin-top: 0px;
-        @media screen and (max-width: 1250px) {
-          display: flex;
-          margin-top: 40px;
-          flex-direction: column;
-        }
-      }
-      .M-project__flexCol {
-        padding: 0;
-        @include for-size(tablet-portrait-up) {
-          width: 100%;
-        }
-      }
-      .M-project__main-info {
-        flex-wrap: wrap;
-        margin-bottom: 0;
-        margin-top: 40px;
-        background: #111111;
-        padding: 70px 110px;
-
-        @include for-size(big-desktop-up) {
-          padding: 90px 120px;
-        }
-        @include for-size(phone-only) {
-          padding: 50px;
-        }
-        .flexCol {
-          width: max-content;
-          padding-right: 60px;
-          margin: 30px 0;
-          width: 25%;
-
-          @include for-size(tablet-portrait-up) {
-            width: 50%;
-          }
-
-          @include for-size(phone-only) {
-            width: 100%;
-          }
-
-          h5 {
-            font-weight: 800;
-            font-size: 22px;
-
-            @include for-size(big-desktop-up) {
-              font-size: 30px;
-              margin-bottom: 5px;
-            }
-          }
-          a {
-            color: #ddd;
-          }
-          p {
-            width: 100%;
-            margin-top: 2px;
-            word-break: break-all;
-          }
-          @include for-size(tablet-portrait-up) {
-            margin-bottom: 40px;
-          }
-        }
-      }
-      .M-project__img-wrapper {
-        position: relative;
-
-        @include flexCenter;
-        width: max-content;
+        padding: 110px 40px 0px 40px;
         height: max-content;
-        margin: 0px auto 38px 0;
-
-        @include for-size(tablet-portrait-up) {
-          margin: 0 auto;
-        }
-
-        img {
-          height: 90px;
-        }
-      }
-      .mockup-macbook {
-        position: relative;
-        width: 80%;
-        max-width: 1200px;
-        margin: 0 auto;
-
-        @include for-size(phone-only) {
-          width: 100%;
-        }
-
-        &-settings p {
-          text-align: center;
-          margin-top: 10px;
-        }
-        &__device {
-          max-width: 100%;
-        }
-        &__bg {
-          background-size: 100% 100%;
-          width: 76.3%;
-          height: 77.4%;
-          position: absolute;
-          top: 7.9%;
-          left: 11.9%;
-          z-index: 21;
-        }
-        &__image {
-          width: 72%;
-          height: 74.5%;
-          position: absolute;
-          top: 6.2%;
-          left: 14%;
-          z-index: 22;
-          border-radius: 1px;
-          overflow-y: scroll;
-          img {
-            width: 100%;
-          }
-        }
-        svg {
-          position: absolute;
-
-          width: 30px;
-          height: 30px;
-
-          top: 0;
-          bottom: 10px;
-          right: 25px;
-          margin: auto;
-
-          fill: white;
-          opacity: 0.7;
-        }
       }
       p {
         width: 100%;
         margin-top: 0;
       }
-      .M-project__title {
-        font-weight: 400;
-      }
-      .M-project__info-title {
-        margin-bottom: 50px;
-
-        h3 {
-          font-size: 20px;
-        }
-        p {
-          display: none;
-        }
-      }
-      .M-project__about {
-        justify-content: center;
-
-        width: 50%;
-        margin: auto;
-
-        @media screen and (max-width: 1250px) {
-          margin: 0 auto;
-          max-width: 500px;
-        }
-
-        p {
-          text-align: center;
-          color: #777;
-        }
-      }
     }
-
     &_buttons {
       padding: 0 30px;
       button {
@@ -1408,5 +909,129 @@ html:not(.touch) .arrow-button--left:hover .arrow-button__picto {
         }
       }
     }
+  }
+  &__main-info {
+    flex-wrap: wrap;
+    margin: 40px 0 0 0;
+
+    @include for-size(big-desktop-up) {
+    }
+    @include for-size(tablet-portrait-up) {
+      padding: 20px;
+    }
+    @include for-size(phone-only) {
+      padding: 0px;
+    }
+    .flexCol {
+      width: max-content;
+      padding-right: 60px;
+      margin: 30px 0;
+      width: 50%;
+
+      @include for-size(tablet-portrait-up) {
+        width: 50%;
+      }
+      @include for-size(phone-only) {
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      h5 {
+        font-weight: 800;
+        font-size: 22px;
+
+        @include for-size(big-desktop-up) {
+          font-size: 30px;
+          margin-bottom: 5px;
+        }
+      }
+      a {
+        color: #ddd;
+        width: max-content;
+      }
+      p {
+        width: 100%;
+        margin-top: 2px;
+        word-break: break-all;
+      }
+      @include for-size(tablet-portrait-up) {
+        margin-bottom: 40px;
+      }
+    }
+  }
+  &__img-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -50px;
+
+    @include flexCenter;
+    width: max-content;
+    height: max-content;
+    margin: 10px auto 38px auto;
+
+    @include for-size(tablet-portrait-up) {
+      margin: 0 auto;
+    }
+
+    img {
+      height: 90px;
+      margin-top: 30px;
+    }
+  }
+  &__preview {
+    width: 100%;
+
+    box-shadow: 0 0 100px rgba(0, 0, 0, .8);
+  }
+  &__title {
+    font-weight: 400;
+  }
+  &__info-title {
+    margin-bottom: 50px;
+
+    h3 {
+      font-size: 20px;
+    }
+    p {
+      display: none;
+    }
+  }
+  &__about {
+    justify-content: center;
+
+    width: 100%;
+    margin: 30px auto 0 auto;
+
+    @media screen and (max-width: 1250px) {
+      margin: 30px auto 0 auto;
+      max-width: 500px;
+
+      p {
+        font-size: 13px;
+      }
+    }
+
+    p {
+      text-align: center;
+      color: #777;
+    }
+  }
+  &__scroll-icon {
+    position: absolute;
+    z-index: 1;
+    top: calc(50% - 20px);
+    right: -20px;
+
+    width: 40px;
+    background: #090c10;
+    border-radius: 50%;
+    padding: 10px;
+
+    stroke: #ffffff;
+    fill: #ffffff;
+    overflow: visible;
+    background: #293544;
+    box-shadow: 0 0 10px rgba(#293544, .6)
   }
 }

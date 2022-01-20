@@ -80,17 +80,17 @@
       </svg>
       <div id="diagram"></div>
       <div id="ball-loader"></div>
+      <img
+        class="magic-cursor__highlight"
+        src="~/assets/img/highlight.gif"
+        alt=""
+      />
     </div>
   </div>
 </template>
 
 <script>
-import { mapMutations, mapGetters } from "vuex";
-
 export default {
-  computed: mapGetters({
-    windowSize: "windowSize",
-  }),
   mounted() {
     const T = this;
     let elements;
@@ -137,15 +137,6 @@ export default {
       });
     });
 
-    if (T.$store.getters.windowSize === "PC") {
-      if (
-        document
-          .querySelector("#magic-cursor")
-          .classList.contains("show-loader")
-      )
-        T.$emit("cursor-loading");
-    }
-
     var n = 0.5,
       o = !1,
       cursorBall = document.getElementById("ball");
@@ -175,54 +166,67 @@ export default {
         }));
     });
     setTimeout(function () {
-      T.$emit("add-event-to-els", ".magic-parallax", "mouseenter", function (
-        e
-      ) {
-        TweenMax.to(this, 0.3, {
-          scale: 2,
-        });
-        TweenMax.to(cursorBall, 0.3, {
-          scale: 2,
-          borderWidth: "1px",
-          opacity: 0.7,
-        });
-        TweenMax.to(
-          e.target.querySelector(".magic-parallax__scale-unset"),
-          0.3,
-          {
-            scale: 0.5,
-          }
-        );
-        o = !0;
-      });
+      T.$emit(
+        "add-event-to-els",
+        ".magic-parallax",
+        "mouseenter",
+        function (e) {
+          TweenMax.to(document.querySelector(".magic-cursor__highlight"), 0.3, {
+            opacity: 1,
+          });
+          TweenMax.to(this, 0.3, {
+            scale: 2,
+          });
+          TweenMax.to(cursorBall, 0.3, {
+            scale: 1.6,
+            // borderWidth: "1px",
+            borderWidth: "0",
+            // opacity: 0.7,
+          });
+          TweenMax.to(
+            e.target.querySelector(".magic-parallax__scale-unset"),
+            0.3,
+            {
+              scale: 0.5,
+            }
+          );
+          o = !0;
+        }
+      );
 
-      T.$emit("add-event-to-els", ".magic-parallax", "mouseleave", function (
-        e
-      ) {
-        TweenMax.to(this, 0.3, {
-          scale: 1,
-        });
-        TweenMax.to(cursorBall, 0.3, {
-          scale: 1,
-          borderWidth: "2px",
-          opacity: 1,
-        });
-        TweenMax.to(
-          e.target.querySelector(".magic-parallax__scale-unset"),
-          0.3,
-          {
+      T.$emit(
+        "add-event-to-els",
+        ".magic-parallax",
+        "mouseleave",
+        function (e) {
+          TweenMax.to(document.querySelector(".magic-cursor__highlight"), 0.3, {
+            opacity: 0,
+          });
+          TweenMax.to(this, 0.3, {
+            scale: 1,
+          });
+          TweenMax.to(cursorBall, 0.3, {
+            scale: 1,
+            borderWidth: "2px",
+            opacity: 1,
+          });
+          TweenMax.to(
+            e.target.querySelector(".magic-parallax__scale-unset"),
+            0.3,
+            {
+              scale: 1,
+              x: 0,
+              y: 0,
+            }
+          );
+          TweenMax.to(e.target.querySelector(".icon"), 0.3, {
             scale: 1,
             x: 0,
             y: 0,
-          }
-        );
-        TweenMax.to(e.target.querySelector(".icon"), 0.3, {
-          scale: 1,
-          x: 0,
-          y: 0,
-        });
-        o = !1;
-      });
+          });
+          o = !1;
+        }
+      );
 
       T.$emit("add-event-to-els", ".magic-parallax", "mousemove", function (e) {
         let n, o, i, l, r, d, c, s, p, h, x, u, w, f, m;

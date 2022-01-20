@@ -2,6 +2,11 @@ import en from "./locales/en-US.js";
 import ru from "./locales/ru-RU.js";
 
 export default {
+  ssr: false,
+  target: 'server',
+  server: {
+    host: '0.0.0.0',
+  },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: "genazozNUXT",
@@ -19,10 +24,6 @@ export default {
       {
         src: "/JS/swiper.min.js",
         type: "text/javascript"
-      },
-      {
-        src: "/JS/guide.js",
-        type: "text/javascript"
       }
     ]
   },
@@ -35,15 +36,9 @@ export default {
   },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [
-    "~/plugins/firebase.js"
-    // '~/plugins/i18n.js',
-  ],
+  plugins: ["~/plugins/firebase.js"],
 
-  generate: {
-    // routes: ['/',    '/contact',      '/project',
-    //          '/en',  '/en/contact' ,  '/en/project']
-  },
+  generate: {},
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,

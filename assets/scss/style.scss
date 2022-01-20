@@ -4,10 +4,6 @@
 
 @import "mixins";
 
-@import "animations";
-
-@import "contact";
-
 @import "swiper.min";
 
 @import "fonts";
@@ -15,7 +11,7 @@
 @import "common";
 
 /*--------------------------------------------------
-	04. Слайдер с проектами
+	PROJECTS SLIDER START
 ---------------------------------------------------*/
 .swiper-container {
   height: 100%;
@@ -47,13 +43,13 @@
       @include flexCenter;
       flex-direction: column;
 
-      &:nth-child(1) {
+      &-info {
         @include flexCenter;
-        width: 48vw;
+        width: 60vw;
         padding: 0;
 
         @include for-size(big-desktop-up) {
-          width: 900px;
+          width: 1150px;
         }
         @include for-size(tablet-portrait-up) {
           height: 450px;
@@ -86,15 +82,14 @@
           @include for-size(phone-min) {
             padding: 40px 0 0 0;
           }
-
           &__img-wrapper {
             position: relative;
 
-            width: 115px;
+            width: 120px;
             height: auto;
 
             @include for-size(big-desktop-up) {
-              width: 135px;
+              width: 150px;
             }
 
             @include for-size(tablet-portrait-up) {
@@ -120,7 +115,25 @@
               }
             }
           }
+          &__crown {
+            position: absolute;
+            z-index: 1;
+            top: -42px;
 
+            width: 86px;
+          }
+          &__highlighted {
+            padding: 0 4px;
+
+            background: #d1ff00;
+
+            font-family: Segoe UI;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #000000;
+
+            transform: rotate(-5deg);
+          }
           .flexCol {
             @include flexCenter;
             align-items: flex-start;
@@ -136,16 +149,19 @@
               align-items: center;
             }
           }
-
           h1 {
             width: 500px;
             margin: auto;
 
             font-size: 40px;
             text-align: center;
+            font-family: Segoe UI;
+            text-transform: uppercase;
+            font-weight: 800;
+            line-height: 42px;
 
             @include for-size(big-desktop-up) {
-              font-size: 45px;
+              font-size: 50px;
               width: 700px;
             }
             @include for-size(tablet-portrait-up) {
@@ -182,7 +198,7 @@
             color: #bbb;
 
             @include for-size(big-desktop-up) {
-              font-size: $fullhd-FS;
+              font-size: $fullhd-FS * 1.05;
 
               width: 430px;
               margin: 20px auto 0 auto;
@@ -193,7 +209,6 @@
               width: 90%;
             }
           }
-
           a {
             display: flex;
             width: max-content;
@@ -229,7 +244,7 @@
         width: 100%;
         height: auto;
 
-        margin-bottom: 30px;
+        margin-bottom: 25px;
         padding: 0 25px;
       }
 
@@ -245,7 +260,7 @@
         @include backgroundCC;
 
         @include for-size(big-desktop-up) {
-          width: 770px;
+          width: 850px;
           margin-top: 10px;
         }
         @include for-size(tablet-portrait-up) {
@@ -308,7 +323,6 @@
     border-radius: 0;
   }
 }
-
 .icon-wrapper {
   position: relative;
 
@@ -339,70 +353,597 @@
     }
   }
 }
+/*--------------------------------------------------
+	PROJECTS SLIDER END
+---------------------------------------------------*/
 
-.container-grid {
-  position: fixed;
-  left: 0%;
-  top: 0%;
-  right: 0%;
-  bottom: 0%;
-  z-index: 1;
-  display: block;
+/*--------------------------------------------------
+	PROJECTS LIST START
+---------------------------------------------------*/
+.projects-list-page {
+  height: max-content;
+  min-height: 100%;
+  padding: 45px 0;
+
+  background: rgb(9, 12, 16);
+
+  @include for-size(tablet-portrait-up){
+    padding: 87px 0 32px 0;
+  }
+  @include for-size(phone-only){
+    padding: 90px 0 45px 0;
+  }
+}
+.genazoz-plate {
+  position: relative;
+
+  @include flexCenter;
+  flex-direction: column;
   width: 100%;
-  height: 100vh;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
-  display: none;
 
-
-  .horizontal-line-grid-top {
-    height: 1px;
-    background-color: hsla(0, 0%, 50.2%, 0);
-  }
-  .container-grid-horizontal {
-    position: fixed;
-    display: flex;
-    width: 100%;
-    height: 100vh;
+  @include for-size(tablet-portrait-up) {
     flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
+    margin: auto;
+    width: 85%;
+    padding: 50px 0 0 0;
+    @include flexCenter;
+  }
+  @include for-size(phone-min) {
+    padding: 40px 0 0 0;
   }
 
-  .horizontal-line-grid {
-    height: 1px;
-    background-color: hsla(0, 0%, 50.2%, 0.2);
-  }
+  &__img-wrapper {
+    position: relative;
 
-  .container-grid-vertical {
-    position: fixed;
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: stretch;
-  }
+    flex-shrink: 0;
+    width: 90px;
+    height: auto;
 
-  .vertical-line-grid {
-    width: 1px;
-    background-color: hsla(0, 0%, 50.2%, 0.2);
 
-    &:nth-child(n + 6) {
-      @include for-size(phone-only) {
-        display: none;
+    img[alt="memoji"] {
+      border-radius: 100%;
+      width: 100%;
+      // border: 2px solid rgba(128, 128, 128, 0.2);
+
+      mix-blend-mode: lighten;
+    }
+    img[alt="emoji"] {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+
+      width: 28px;
+      margin: 0 0 0 5px;
+      display: none;
+
+      @include for-size(tablet-portrait-up) {
       }
     }
-    &:nth-child(n + 7) {
+  }
+  &__crown {
+    position: absolute;
+    z-index: 1;
+    top: -42px;
+
+    width: 86px;
+    height: 86px;
+  }
+  &__highlighted {
+    padding: 0 4px;
+
+    background: #d1ff00;
+
+    font-family: Segoe UI;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #000000;
+
+    transform: rotate(-5deg);
+  }
+  .flexCol {
+    @include flexCenter;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+
+    text-align: left;
+
+    @include for-size(tablet-portrait-up) {
+      text-align: center;
+      width: max-content;
+      max-width: 100%;
+      align-items: center;
+    }
+  }
+  h1 {
+    width: auto;
+    margin: auto;
+
+    font-size: 20px;
+    text-align: center;
+    font-family: Segoe UI;
+    text-transform: uppercase;
+    font-weight: 800;
+    line-height: 100%;
+
+    @include for-size(phone-min) {
+      font-size: 30px;
+    }
+
+    &.title_desktop {
       @include for-size(tablet-portrait-up) {
         display: none;
       }
     }
+    &.title_smartphone {
+      display: none;
+      @include for-size(tablet-portrait-up) {
+        display: unset;
+      }
+    }
+
+    @include for-size(tablet-portrait-up) {
+      margin-top: 5px;
+      width: auto;
+      max-width: 100%;
+    }
+  }
+  p {
+    margin: 10px auto;
+
+    text-align: center;
+    font-size: .6rem;
+
+    color: #bbb;
+
+    @include for-size(tablet-portrait-up) {
+      font-size: 15px;
+      width: 90%;
+    }
+  }
+  a {
+    display: flex;
+    width: max-content;
+    margin: auto;
+    padding: 13px 30px;
+    font-size: 11px;
+
+    color: white;
+    outline: none;
+    color: black;
+    border: 0;
+    background: white;
+
+    font-weight: bold;
+    text-transform: uppercase;
+
+    &:hover {
+      background: rgba(white, 0.12);
+      color: white;
+    }
+
+    @include for-size(tablet-portrait-up) {
+      margin-top: 10px;
+      display: none;
+    }
+  }
+}
+.projects-tags {
+  max-width: 1520px;
+  margin: auto;
+
+  &__container {
+    position: relative;
+
+    display: flex;
+    width: max-content;
+    max-width: 1520px;
+    padding: 5px;
+
+    border: 2px solid rgb(48, 54, 61);
+    border-radius: 32px;
+
+    @media (max-width: 1400px) {
+      max-width: 100%;
+      overflow-x: auto;
+    }
   }
 
-  .horizontal-line-grid-bottom {
-    height: 1px;
-    background-color: rgba(77, 77, 77, 0);
+  .tag {
+    flex-shrink: 0;
+    margin-right: 6px;
+  }
+  .tag-wrapper:nth-last-child(1) .tag{
+    margin: 0;
+  }
+}
+.projects-list {
+  &__container {
+    display: grid;
+    grid-auto-flow: row;
+    grid-gap: 1.3rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 100%;
+    max-width: 1520px;
+    margin: 40px auto 0 auto;
+
+    @media (max-width: 1400px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @include for-size(tablet-landscape-up){
+      display: flex;
+      flex-wrap: wrap;
+      grid-gap: unset;
+      grid-template-columns: unset;
+    }
+    @media (max-width: 960px) {
+      justify-content: center;
+    }
+    & > .projects-list__item-wrapper {
+      // opacity: 0.3;
+    }
+
+    &:hover {
+      & > .projects-list__item-wrapper:hover {
+        opacity: 1;
+      }
+    }
+  }
+  &__item {
+    position: relative;
+
+    padding: 50%;
+
+    border-radius: 32px;
+    background: rgb(13, 17, 23);
+    box-shadow: rgb(48, 54, 61) 0px 0px 0px 2px inset;
+    overflow: hidden;
+
+    @media (max-width: 1224px) {
+      padding: 30%;
+    }
+    @media (max-width: 900px) {
+      padding: 45%;
+    }
+    @media (max-width: 700px) {
+      padding: 40%;
+    }
+
+    &::before {
+      content: "";
+
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+
+      transition: 0.2s all;
+
+      border: 0px solid #d1ff00;
+    }
+    &:hover {
+      &::before {
+        // border: 7px solid #d1ff00;
+      }
+    }
+    &-wrapper {
+      @include for-size(tablet-landscape-up){
+        width: calc(50% - 40px);
+        margin: 0 20px 40px 20px;
+      }
+      @include for-size(phone-only) {
+        width: 100%;
+        margin: 0 0 40px 0;
+      }
+
+      &.filter-value-not-fit{
+        display: none;
+      }
+      &:nth-child(1) {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+      &:nth-child(7) {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+      &:nth-child(1),
+      &:nth-child(7) {
+        .projects-list__item{
+          height: 100%;
+        }
+
+        h5 {
+          display: flex;
+          align-items: center;
+          height: 28px;
+          width: max-content;
+          margin-bottom: 5px;
+          padding: 0 7px;
+          background: #d1ff00;
+          color: black;
+          font-weight: 800;
+          text-transform: uppercase;
+          font-family: "Segoe UI";
+          font-size: 23px;
+        }
+        p {
+          width: max-content;
+          padding: 2px 7px;
+
+          font-family: "Segoe UI";
+          font-size: 13px;
+          font-weight: 800;
+          color: black;
+
+          background: #859ba8;
+          text-transform: uppercase;
+        }
+        .projects-list__item-info {
+          left: -16px;
+          width: calc(100% + 16px);
+        }
+      }
+
+      &:hover img{
+        top: 5%;
+        left: -30%;
+        transform: rotate(-8deg);
+      }
+    }
+    img {
+      position: absolute;
+      top: 10%;
+      left: 13%;
+
+      width: 158%;
+      height: 91%;
+      object-fit: cover;
+
+      border-radius: 32px;
+      transition: .3s all;
+      transform: rotate(-8deg);
+
+      @include for-size(tablet-portrait-up){
+        top: 0;
+        left: 0;
+        transform: unset;
+        height: 87%;
+        width: 92%;
+        margin: auto;
+        bottom: 0;
+        right: 0;
+        border-radius: 22px;
+      }
+    }
+    &-highlight {
+      position: absolute;
+      z-index: -1;
+    }
+    &-info {
+      position: absolute;
+      bottom: -11px;
+      left: -10px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      width: calc(100% + 10px);
+      height: 70%;
+      padding: 33px;
+
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+
+      h5 {
+        display: flex;
+        align-items: center;
+        height: 20px;
+        width: max-content;
+        margin-bottom: 5px;
+        padding: 0 6px;
+        background: #d1ff00;
+        color: black;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-family: "Segoe UI";
+        font-size: 14px;
+      }
+      p {
+        width: max-content;
+        padding: 1px 5px;
+
+        font-family: "Segoe UI";
+        font-size: 11px;
+        font-weight: 800;
+        color: black;
+
+        background: #859ba8;
+        text-transform: uppercase;
+      }
+    }
+  }
+  &__genazoz-plate {
+    align-items: flex-start;
+    padding: 2rem;
+    grid-column: span 1;
+    grid-row: span 1;
+
+    border-radius: 32px;
+    background: #0d1117;
+    box-shadow: #30363d 0px 0px 0px 2px inset;
+
+    @include for-size(tablet-landscape-up){
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 63%;
+      align-items: flex-start;
+      height: auto;
+      margin: 0 20px 40px 20px;
+    }
+    @include for-size(tablet-portrait-up) {
+      width: 53%;
+    }
+    @media (max-width: 960px) {
+      flex-direction: column;
+      align-items: center;
+      width: 330px;
+      margin: 0 100% 40px 100%;
+      padding: 3rem 2rem;
+    }
+    @include for-size(phone-only) {
+      width: 100%;
+    }
+
+    &.filter-value-not-fit{
+      display: none;
+    }
+
+    img[alt="memoji"] {
+      margin-bottom: 5px;
+
+      @include for-size(phone-only) {
+        margin-bottom: 10px;
+      }
+    }
+    h1{
+      margin: 0;
+
+      @include for-size(tablet-landscape-up){
+        font-size: 27px;
+        line-height: 110%;
+      }
+      @media (max-width: 960px) {
+        font-size: 24px;
+      }
+    }
+    h1, p {
+      text-align: left;
+    }
+    p {
+      margin: 10px 0 0 0;
+
+      @media (max-width: 960px) {
+        text-align: center;
+      }
+    }
+    .flexCol {
+      align-items: flex-start;
+
+      @include for-size(tablet-landscape-up){
+        margin-left: 25px;
+      }
+      @media (max-width: 960px) {
+        margin-left: 0;
+        align-items: center;
+      }
+    }
+    .genazoz-plate__img-wrapper{
+      @include for-size(phone-only) {
+        width: 95px;
+      }
+    }
+  }
+}
+.projects-tags, .projects-list__container{
+  padding: 0 6.5rem;
+
+  @media (max-width: 1400px) {
+    padding: 0 3rem;
+  }
+  @include for-size(phone-only){
+    padding: 0 25px;
+  }
+}
+/*--------------------------------------------------
+	PROJECTS LIST END
+---------------------------------------------------*/
+
+.tag {
+  position: relative;
+
+  display: flex;
+  overflow: hidden;
+  width: max-content;
+  height: auto;
+  padding: 9px 16px;
+
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: 13.3px;
+  color: #fff;
+
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+  border-radius: 30px;
+  //border: 1.5px solid rgba(#ffffff, 0.1);
+
+  transition: 0.1s all;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  span {
+    z-index: 2;
+    display: block;
+    position: relative;
+  }
+
+  &:hover{
+    opacity: .7;
+  }
+
+  &.is-active {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    height: 100%;
+    margin: auto;
+
+    opacity: 0;
+    background: rgb(33, 38, 45);
+    border-radius: 100px;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.3s;
+    transition-timing-function: cubic-bezier(0.7, 0, 0.2, 1);
+  }
+}
+
+@keyframes MoveUpInitial {
+  to {
+    transform: translate3d(0, -105%, 0);
+  }
+}
+
+@keyframes MoveUpEnd {
+  from {
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
   }
 }

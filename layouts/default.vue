@@ -1,27 +1,25 @@
 <template>
   <div>
-    <iframe class="elasticman"> </iframe>
+<!--    <iframe class="elasticman"> </iframe>-->
 
-    <MagicCursor
-      @cursor-loading="cursorLoading"
-      @add-event-to-els="addEventToEls"
-    />
+    <MagicCursor @add-event-to-els="addEventToEls" />
     <Header />
-    <MainPage @cursor-loading="cursorLoading" />
+    <HeaderMobile />
+    <MainPage />
     <nuxt />
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 
 <script>
 import { mapMutations, mapGetters } from "vuex";
-import BezierEasing from "bezier-easing/dist/bezier-easing.min";
 
 /*--------------------------------------------------
   Импорт компонентов - Import components
 ---------------------------------------------------*/
 import MagicCursor from "@/components/MagicCursor";
 import Header from "@/components/Header";
+import HeaderMobile from "@/components/HeaderMobile";
 import MainPage from "@/components/MainPage";
 import Footer from "@/components/Footer";
 
@@ -29,34 +27,20 @@ export default {
   components: {
     MagicCursor,
     Header,
+    HeaderMobile,
     MainPage,
     Footer,
   },
-  computed: mapGetters({
-    windowSize: "windowSize",
-  }),
   mounted() {
     const T = this;
 
-    let width = window.innerWidth;
-    T.$store.commit("getWindowSize", { width: width });
-
-    T.initCursorHover();
-
-    document.querySelector(".close-btn").addEventListener("click", (event) => {
-      document.querySelector("header").removeAttribute("about-contact");
-      TweenMax.to(".text-lower-main", 0.5, {
-        transform: "translateY(100px)",
-      });
-      TweenMax.to(".home", 0.1, {
+    setTimeout(() => {
+      TweenMax.to("body", 0.6, {
         opacity: 1,
-        overflow: "visible",
-        filter: "blur(" + 0 + "px)",
-        pointerEvents: "all",
       });
-    });
+    }, 500);
     T.addEventToEls(
-      "footer .flexRow:nth-last-child(1) .magic-parallax, .header__toggle-el_about-contact, .close-btn",
+      "footer .flexRow:nth-last-child(1) .magic-parallax, .elastic-close-btn",
       "click",
       function (event) {
         var ifr = document.querySelector(".elasticman");
@@ -74,17 +58,10 @@ export default {
           document.querySelector("footer").classList.remove("davidli");
           document.querySelector("header").classList.toggle("elasticm");
           document.querySelector("footer").classList.toggle("elasticm");
-          document
-            .querySelector("header")
-            .classList.toggle("elasticm-show-close");
 
-          TweenMax.to(".home", 0.3, {
-            opacity: 1,
-          });
+          document.querySelector(".home").style.opacity = "1";
         } else {
-          TweenMax.to(".home", 0.3, {
-            opacity: 0,
-          });
+          document.querySelector(".home").style.opacity = "0";
           document.querySelector("header").classList.toggle("elasticm");
           document.querySelector("footer").classList.add("davidli");
           setTimeout(function () {
@@ -94,11 +71,6 @@ export default {
             document.getElementById("magic-cursor").classList.add("disactive");
             ifr.style.pointerEvents = "all";
           }, 300);
-          setTimeout(function () {
-            document
-              .querySelector("header")
-              .classList.toggle("elasticm-show-close");
-          }, 3000);
         }
       }
     );
@@ -121,66 +93,10 @@ export default {
         }
       });
     },
-
-    /*--------------------------------------------------
-      Анимация загрузки у курсора
-    ---------------------------------------------------*/
-    cursorLoading() {
-      let cursorLoad = document.querySelector("#magic-cursor");
-
-      document.querySelector("#magic-cursor").classList.add("show-loader");
-      setTimeout(function () {
-        cursorLoad.classList.remove("show-loader");
-      }, 600);
-    },
-
-    initCursorHover() {
-      let elements;
-      elements = document.querySelectorAll(".hide-ball");
-      elements.forEach(function (x) {
-        x.addEventListener("mouseenter", function () {
-          TweenMax.to("#ball", 0.15, {
-            borderWidth: "1px",
-            scale: 2,
-            opacity: 0,
-          });
-        });
-        x.addEventListener("mouseleave", function () {
-          TweenMax.to("#ball", 0.25, {
-            borderWidth: "2px",
-            scale: 1,
-            opacity: 1,
-          });
-        });
-      });
-      elements = document.querySelectorAll(".link, .mouseScale");
-      elements.forEach(function (x) {
-        x.addEventListener("mouseenter", function () {
-          TweenMax.to("#ball", 0.2, {
-            borderWidth: "0px",
-            scale: 3,
-            backgroundColor: "rgba(127, 127, 127, 1)",
-            opacity: 0.15,
-          });
-        });
-        x.addEventListener("mouseleave", function () {
-          TweenMax.to("#ball", 0.3, {
-            borderWidth: "2px",
-            scale: 1,
-            backgroundColor: "rgba(127, 127, 127, 0)",
-            opacity: 1,
-          });
-        });
-      });
-    },
   },
-  updated() {},
   created() {
     const T = this;
 
-    T.$nuxt.$on("init-cursor-hover", () => {
-      T.initCursorHover();
-    });
     T.$nuxt.$on("add-event-els", function (elsAttr, evnt, func) {
       T.addEventToEls(elsAttr, evnt, func);
     });
